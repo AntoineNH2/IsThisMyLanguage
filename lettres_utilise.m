@@ -1,0 +1,1 @@
+%% determiner les lettres utiliser
