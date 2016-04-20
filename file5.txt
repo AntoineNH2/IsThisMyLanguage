@@ -3,3 +3,5 @@ coucou test des diff
 rajout pour tester les diff
 
 nouveau rajout
+
+nvx rajout pour voir le fctnt de diff
