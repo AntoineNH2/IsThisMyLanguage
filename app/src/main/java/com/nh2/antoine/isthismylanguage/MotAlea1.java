@@ -10,9 +10,11 @@ public class MotAlea1 {
 
     private int tailleMot = 0;
     private int lettreInt = 0;
-    private StringBuffer motAlea = null;
+    private char lettreString = 'a';
 
     public StringBuffer methode1 (){
+        StringBuffer motAlea = new StringBuffer();
+
         tailleMot = (int) (Math.random()*12 + 1);
 
         for (int i = 1; i<= tailleMot; i++){
@@ -20,9 +22,11 @@ public class MotAlea1 {
 
             lettreInt = (int) (Math.random()*26 + 97); // entre 97 et 122 compris !
 
+            lettreString = (char) lettreInt;
             // Avec StringBuffer
-            motAlea.append (i).append (String.valueOf(lettreInt));
+            motAlea.append (lettreString);
         }
+
         return motAlea;
     }
 
