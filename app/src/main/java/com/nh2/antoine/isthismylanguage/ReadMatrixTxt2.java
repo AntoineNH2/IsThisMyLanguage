@@ -17,9 +17,9 @@ import java.util.List;
 public class ReadMatrixTxt2 {
 
 
-    public int[][] read(String filename) throws FileNotFoundException {
+    public float[][] read(String filename) throws FileNotFoundException {
 
-        int [][] matrice;
+        float [][] matrice = new float[0][];
         //Scanner input = new Scanner(new File(filename));
         BufferedReader input = new BufferedReader(new FileReader(filename));
 
@@ -32,16 +32,17 @@ public class ReadMatrixTxt2 {
                 ++rows;
             }
 
-            matrice = new int[rows][rows];
+            matrice = new float[rows][rows];
             // read in the data
             String line;
             int i=0;
             while((line = input.readLine()) !=null){
                 ++i;
                 //String[] row = line.split(",");
+                columns = 0;
                 for (String retval: line.split(",")){
                     ++columns;
-                    matrice[i][columns] = (int) retval;
+                    matrice[i][columns] = Float.parseFloat(retval);
                 }
             }
         } catch (IOException e) {
