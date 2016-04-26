@@ -12,7 +12,12 @@
             private TextView TextAlea =null;
             private Button BoutonAlea =null;
             private Button BoutonEfface = null;
+
             private int tailleMot = 0;
+
+
+            private int lettreInt = 0;
+            private char lettreString = 'a';
 
 
 
@@ -26,9 +31,29 @@
                     @Override
                     public void onClick(View v) {
                         // ICI l'action
-                        tailleMot = (int) (Math.random()*10 +1);
+
+                        StringBuffer motAlea = new StringBuffer();
+
+                        tailleMot = (int) (Math.random()*12 + 1);
+
+                        for (int i = 1; i<= tailleMot; i++){
+                            // Crée la lettre
+
+                            lettreInt = (int) (Math.random()*26 + 97); // entre 97 et 122 compris !
+
+                            lettreString = (char) lettreInt;
+                            // Avec StringBuffer
+                            motAlea.append (lettreString);
+                        }
+
+
+                        //tailleMot = (int) (Math.random()*26 + 97);//(Math.random()*10 +1);
+
                         TextAlea = (TextView)findViewById(R.id.MotAleaTxtView);
-                        TextAlea.setText(String.valueOf(tailleMot));
+
+                        TextAlea.setText(String.valueOf(motAlea));
+
+
                     }
                 });
 
