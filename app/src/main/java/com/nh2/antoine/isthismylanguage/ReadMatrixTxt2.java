@@ -41,7 +41,7 @@ public class ReadMatrixTxt2 {
             while (input.readLine() != null) {
                 ++rows;
             }
-            Log.v("class",String.valueOf(rows));
+            //Log.v("class",String.valueOf(rows));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,6 +73,7 @@ public class ReadMatrixTxt2 {
                     ++columns;
                 }
                 ++i;
+                //Log.v("i=",String.valueOf(i));
             }
             //Log.v("class","a lu le fichier et a récuperer dans la matrice");
             } catch (IOException e) {

@@ -76,8 +76,9 @@
                         MatrStr = new StringBuffer();
                         int i;
                         int j;
-                        for (i=0;i<=2;i++){
-                            for (j=0;j<=2;j++){
+
+                        for (i=0;i<4;i++){
+                            for (j=0;j<3;j++){
                                 MatrStr.append(String.valueOf(matrice[i][j]));
                                 MatrStr.append(' ');
                                 //Log.v("affiche",String.valueOf(matrice[i][j]));
