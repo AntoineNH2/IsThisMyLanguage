@@ -16,7 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by antoine on 26/04/16.
+ * Cette fonction lit un fichier txt et le transforme en 2D-array
+ * IL faut que dans le fichier TXT les valeurs soients des INT positifs et soient séparées par des ','
+ *
+ * Created by antoineNH2 on 26/04/16.
  */
 public class ReadMatrixTxt2 {
 

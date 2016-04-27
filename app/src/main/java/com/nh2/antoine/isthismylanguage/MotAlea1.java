@@ -30,6 +30,8 @@ public class MotAlea1 {
         return motAlea;
     }
 
+
+
     // Math.random() pour avoir de l'aléa entre [0,1[
 
 }
