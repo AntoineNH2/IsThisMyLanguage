@@ -27,7 +27,7 @@
             private String filename;
 
             private int [][] matrice;
-            private StringBuffer MatrStr = new StringBuffer();
+            private StringBuffer MatrStr;
 
 
                     @Override
@@ -73,7 +73,7 @@
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         }
-
+                        MatrStr = new StringBuffer();
                         int i;
                         int j;
                         for (i=0;i<=2;i++){
@@ -83,7 +83,7 @@
                                 //Log.v("affiche",String.valueOf(matrice[i][j]));
                             }
                         }
-                        Log.v("final", String.valueOf(MatrStr));
+                        //Log.v("final", String.valueOf(MatrStr));
                         TextAlea = (TextView)findViewById(R.id.MatrixView);
                         TextAlea.setText(MatrStr);
                     }
