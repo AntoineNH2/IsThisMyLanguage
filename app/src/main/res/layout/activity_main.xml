@@ -13,26 +13,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CLique sur les boutons :) !"
-        android:layout_above="@+id/BalanceBouton"
+        android:id="@+id/MotAleaTxtView"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="171dp"
-        android:id="@+id/MotAleaTxtView" />
+        android:layout_marginTop="39dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Envoie un mot !"
+        android:text="Envoi un mot !"
         android:id="@+id/BalanceBouton"
-        android:layout_marginBottom="99dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/MotAleaTxtView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Efface moi ça !"
+        android:text="Envoi un tableau !"
         android:id="@+id/EraseButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="38dp" />
+        android:layout_marginBottom="48dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Ici la lecture du txt !"
+        android:id="@+id/MatrixView"
+        android:layout_above="@+id/EraseButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="77dp" />
 </RelativeLayout>

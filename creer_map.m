@@ -2,7 +2,7 @@
 %function map=creer_map(langue)  %à mettre en string 's'
 
 global langue stat
-langue = 'FR';
+langue = 'fr';
 filepath = [num2str(langue), '.txt'];
 
 fileID = fopen(filepath);
@@ -89,26 +89,27 @@ disp('fin des calculs')
 toc
 
 %% Normalisation
-stat.taille = stat.taille/max(stat.taille);
-stat.lettres_1 = stat.lettres_1/max(max(stat.lettres_1));
-stat.lettres_2 = stat.lettres_2/max(max(stat.lettres_2));
-stat.start_1 = stat.start_1/max(stat.start_1);
+stat.taille =round(100* stat.taille/max(stat.taille));
+stat.lettres_1 =round(100* stat.lettres_1/max(max(stat.lettres_1)));
+stat.lettres_2 =round(100* stat.lettres_2/max(max(stat.lettres_2)));
+stat.start_1 = round(100*stat.start_1/max(stat.start_1));
 
 %% Sauvegarde
 save(['stat_', num2str(langue),'.mat'], 'langue', 'stat')
 
 %% Plot les tableaux
-figure(1);bar(stat.taille)%/max(nom(1:40,2)))
-title('Repartition longueurs de mots')
 
-figure(2); imagesc(stat.lettres_1(65:122,65:122))
-title('Repartition lettre -1')
-
-figure(3); imagesc(stat.lettres_2(65:122,65:122));
-title('Repartition lettre -2')
-
-figure(4);bar(stat.start_1);%/max(start1(:,2)))
-title('Repartition des premieres lettres')
+% figure(1);bar(stat.taille)%/max(nom(1:40,2)))
+% title('Repartition longueurs de mots')
+% 
+% figure(2); imagesc(stat.lettres_1(65:122,65:122))
+% title('Repartition lettre -1')
+% 
+% figure(3); imagesc(stat.lettres_2(65:122,65:122));
+% title('Repartition lettre -2')
+% 
+% figure(4);bar(stat.start_1);%/max(start1(:,2)))
+% title('Repartition des premieres lettres')
 
 
 %%
