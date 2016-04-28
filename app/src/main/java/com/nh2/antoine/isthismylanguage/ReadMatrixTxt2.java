@@ -35,7 +35,7 @@ public class ReadMatrixTxt2 {
         int columns = 0;
         try {
             input = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
-            //Log.v("class", "récupère le ficher");
+            Log.v("ReadMatrixTxt2", "récupère le ficher "+filename);
 
         // pre-read in the number of rows/columns
 
@@ -78,7 +78,7 @@ public class ReadMatrixTxt2 {
                 ++i;
                 //Log.v("i=",String.valueOf(i));
             }
-            //Log.v("class","a lu le fichier et a récuperer dans la matrice");
+            Log.v("ReadMatrixTxt2","a lu "+ filename + " et la récuperer dans la matrice");
             } catch (IOException e) {
                 e.printStackTrace();
             }

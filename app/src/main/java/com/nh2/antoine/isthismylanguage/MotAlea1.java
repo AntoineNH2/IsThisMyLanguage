@@ -1,6 +1,8 @@
 package com.nh2.antoine.isthismylanguage;
 
 
+import java.util.ArrayList;
+
 /**
  * Created by antoine on 26/04/16.
  *
@@ -30,8 +32,32 @@ public class MotAlea1 {
         return motAlea;
     }
 
+    private char lStart;
+    private char lPrecedente;
+    private char lSuivant;
+    private String motAlea;
 
 
-    // Math.random() pour avoir de l'aléa entre [0,1[
+    public String methode2 (ArrayList<int[][]> mArray){
+
+        ProbaLettre probaLettre = new ProbaLettre();
+
+        tailleMot = probaLettre.getTaille(mArray.get(0));
+        //Log.v("taille mot =",String.valueOf(tailleMot));
+
+        lStart = probaLettre.getStart(mArray.get(1));
+        //Log.v("1ere lettre", String.valueOf(lStart));
+        motAlea =String.valueOf(lStart);
+
+
+        lPrecedente = lStart;
+        int k;
+        for (k=0;k<tailleMot; k++){
+            lSuivant = probaLettre.getSuivante(mArray.get(2),lPrecedente);
+            lPrecedente = lSuivant;
+            motAlea +=lSuivant;
+        }
+        return motAlea;
+    }
 
 }

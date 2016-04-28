@@ -41,34 +41,26 @@ public class ProbaLettre {
         mArray = new ArrayList<int[][]>();
         int ifile =3; // Taille, Start, Lettre !!!!!!
         int i = 0;
-        String[] file= { "taille", "start_", "lettre_"};
+        String[] file= { "taille_", "start_", "lettre_"};
 
 
         for (i=0;i<ifile;i++) {
-            filename = file[i] + langue;
-            Log.v("filename = ", filename);
+            filename = file[i] + langue + ".txt";
+            //Log.v("ProbaLettre filename = ", filename);
             matrice = new int[0][];
             try {
-                //Log.v("matrice","récupère la matrice");
+                //Log.v("ProbaLettre Load","récupère la matrice "+filename);
                 matrice = ReadMatrixTxt2.read2(filename, mContext);
+                mArray.add(matrice);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            if (i==0) {
-                mTaille = matrice;
-            }else if (i==1){
-                mStart = matrice;
-            }else if(i==2){
-                mLettre = matrice;
-            }
-            mArray.add(mTaille);
-            mArray.add(mStart);
-            mArray.add(mLettre);
         }
         return mArray;
     }
 
     public int getTaille (int[][] mTaille){
+        //Log.v("ProbaLettre ", "get taille");
 
         int i=0;
         // ici seulement la première COLONNE d'intéressante
@@ -78,12 +70,12 @@ public class ProbaLettre {
             loi[i]=mTaille[i][0];
         }
         taille = alea_perso(loi);
-        //Log.v("taille",String.valueOf(taille));
+        ////Log.v("taille",String.valueOf(taille));
         return taille;
     }
 
-    public int getStart (int[][] mStart){
-
+    public char getStart (int[][] mStart){
+        //Log.v("ProbaLettre  ", "get Start");
         int i=0;
         // ici seulement la première COLONNE d'intéressante
 
@@ -92,36 +84,38 @@ public class ProbaLettre {
             loi[i]=mStart[i][0];
         }
         lStart = (char) alea_perso(loi);
-        //Log.v("taille",String.valueOf(taille));
+        ////Log.v("taille",String.valueOf(taille));
         return lStart;
     }
 
 
     public char getSuivante (int[][] mLettre, char lPrecedente){
+        //Log.v("ProbaLettre ", "get Suivant");
         // pour récupérer une première lettre au hasard
 
         int i=0;
         int iPrecedente = (int) lPrecedente;
 
-        Log.v("lPrecedente", String.valueOf(lPrecedente));
-        Log.v("iPrecedente", String.valueOf(iPrecedente));
+        //Log.v("ProbaLettre lPrecedente", String.valueOf(lPrecedente));
 
-        loi= new int[mStart.length];
+
+        loi= new int[mLettre.length];
         for (i=0; i<loi.length;i++){
             loi[i]=mLettre[iPrecedente][i];
         }
         lSuivante = (char) alea_perso(loi);
-
+        ////Log.v("ProbaLettre lSuivante", String.valueOf(lSuivante));
         return lSuivante;
     }
 
 
 
-    /*Génère un entier  suivant la loi modélisée par le tableau
+    /*Génère un entier suivant la loi modélisée par le tableau
 passé en paramètre */
     private int alea_perso(int loi[]){
         int i=0;
-        int x= (int) ( 100*(Math.random()));     //entre 0 et 99
+        int x= (int) ( (90)*(Math.random())+1);     //entre 1 et 97 pour éviter les erreurs de virgules (possible que somme = 98...)
+        ////Log.v("ProbaLettre x ", String.valueOf(x));
         int somme=0;
 	/* Dans le premier passage dans la boucle, on testera
            si x est inférieur à somme, c'est à dire loi[0]. Si ce n'est pas le cas
@@ -132,7 +126,7 @@ passé en paramètre */
             somme += loi[i];
             i++;
         }while( somme < x);
-        return i;
+        return i-1;
     }
 
 }
