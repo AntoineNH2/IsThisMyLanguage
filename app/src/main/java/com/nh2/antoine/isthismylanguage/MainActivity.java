@@ -11,6 +11,7 @@
 
         import java.io.FileNotFoundException;
         import java.io.InputStream;
+        import java.io.StringReader;
 
                 public class MainActivity extends AppCompatActivity {
 
@@ -29,11 +30,17 @@
             private int [][] matrice;
             private StringBuffer MatrStr;
 
+            private int[][] mTaille;
+
 
                     @Override
             protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_main);
+
+                        final ProbaLettre probaLettre = new ProbaLettre();
+                        mTaille = probaLettre.LoadMatrice("fr", MainActivity.this);
+                        Log.v("Initialisation", "matrices loadées");
 
                 BoutonAlea = (Button) findViewById(R.id.BalanceBouton);
                 BoutonAlea.setOnClickListener(new View.OnClickListener() {
@@ -60,8 +67,9 @@
                 BoutonEfface.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-                        // Ici efface le mot
 
+
+                        /* Test de la lecture de la matrice
                         filename = "test.txt";
                         matrice = new int[0][];
 
@@ -85,8 +93,15 @@
                             }
                         }
                         //Log.v("final", String.valueOf(MatrStr));
+                        */
+
+
+                        // normalement matrices loadées !
+                        tailleMot = probaLettre.getTaille(mTaille);
+
                         TextAlea = (TextView)findViewById(R.id.MatrixView);
-                        TextAlea.setText(MatrStr);
+                        TextAlea.setText(String.valueOf(tailleMot));
+                        //Log.v("taille mot =",String.valueOf(tailleMot));
                     }
                 });
             }
