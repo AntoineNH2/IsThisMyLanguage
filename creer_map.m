@@ -4,7 +4,8 @@
 global langue stat
 langue = 'fr';
 filepath = [num2str(langue), '.txt'];
-
+disp('Bonjour !')
+disp('Récupération du dictionnaire')
 fileID = fopen(filepath);
 C = textscan(fileID,'%s %d');
 fclose(fileID);
@@ -107,8 +108,9 @@ tot.start = sum(stat.start_1);
 % Mises en %age
 stat.taille =round(100* stat.taille/(tot.taille));
 for ligne =1:255
+    if tot.lettre(ligne) ~=0
       stat.lettre(ligne,:) =round(100* stat.lettre(ligne,:)/(tot.lettre(ligne)));
-
+    end
 %     stat.lettres_1(ligne,:) =round(100* stat.lettres_1(ligne,:)/(tot.l1(ligne)));
 %     stat.lettres_2(ligne,:) =round(100* stat.lettres_2(ligne,:)/(tot.l2(ligne)));
 end
