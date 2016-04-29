@@ -60,7 +60,7 @@ public class ProbaLettre {
     }
 
     public int getTaille (int[][] mTaille){
-        //Log.v("ProbaLettre ", "get taille");
+        Log.v("ProbaLettre ", "get taille");
 
         int i=0;
         // ici seulement la première COLONNE d'intéressante
@@ -75,7 +75,7 @@ public class ProbaLettre {
     }
 
     public char getStart (int[][] mStart){
-        //Log.v("ProbaLettre  ", "get Start");
+        Log.v("ProbaLettre  ", "get Start");
         int i=0;
         // ici seulement la première COLONNE d'intéressante
 
@@ -90,7 +90,7 @@ public class ProbaLettre {
 
 
     public char getSuivante (int[][] mLettre, char lPrecedente){
-        //Log.v("ProbaLettre ", "get Suivant");
+        Log.v("ProbaLettre ", "get Suivant");
         // pour récupérer une première lettre au hasard
 
         int i=0;
@@ -114,7 +114,7 @@ public class ProbaLettre {
 passé en paramètre */
     private int alea_perso(int loi[]){
         int i=0;
-        int x= (int) ( (90)*(Math.random())+1);     //entre 1 et 97 pour éviter les erreurs de virgules (possible que somme = 98...)
+        int x= (int) ( (90)*(Math.random())+1);     //entre 1 et 90 pour éviter les erreurs de virgules (possible que somme = 98...)
         ////Log.v("ProbaLettre x ", String.valueOf(x));
         int somme=0;
 	/* Dans le premier passage dans la boucle, on testera
@@ -125,8 +125,9 @@ passé en paramètre */
         do{
             somme += loi[i];
             i++;
-        }while( somme < x);
-        return i-1;
+        }while(somme < x);
+        Log.v("ProbaLettre i= ", String.valueOf(i));
+        return i;
     }
 
 }

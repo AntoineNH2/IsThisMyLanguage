@@ -2,7 +2,7 @@
 %function map=creer_map(langue)  %à mettre en string 's'
 
 global langue stat
-langue = 'fr';
+langue = 'fr_modif';
 filepath = [num2str(langue), '.txt'];
 disp('Bonjour !')
 disp('Récupération du dictionnaire')
@@ -35,8 +35,8 @@ fclose(fileID);
 %taille mot
 stat.taille = zeros(50,1);
 
-stat.lettres_1 = zeros(255);    %lettre +1  
-stat.lettres_2 = zeros(255);    %lettre +2
+% stat.lettres_1 = zeros(255);    %lettre +1  
+% stat.lettres_2 = zeros(255);    %lettre +2
 stat.lettre = zeros(255);       % prise en compte de 2/3 lettre1 et 1/3 lettre2
 stat.start_1 = zeros(255,1);    %lettre qui commence +1
 
@@ -56,23 +56,27 @@ while k<dim_dic(1)
     mot = C{1}{k};
     dim_mot= size(mot);
     i=1;
+    nb_supp = 0;
     while i<=dim_mot(2) 
-        if double(mot(i))>255
+        if (double(mot(i))>122 || (double(mot(i))<47) ||(double(mot(i))>47 && double(mot(i))<65)) || (double(mot(i))>90 && double(mot(i))<97) %ce n'est pas une lettre
+            %disp(['Mot non pris en compte: ',mot])
+            nb_supp = nb
             k=k+1;
-            %disp(['Etape n°',num2str(k)]);
+            %disp(['Etape n°',num2str(k)])
             mot = C{1}{k};
             dim_mot= size(mot);
             i=1;
-        end
+        end %on a sauté le mot
+       
         %enregistre les stat
         if i == 1%start+1
             stat.start_1(double(mot(i)))= stat.start_1(double(mot(i)))+1;
 %             disp('start i=1 fait')
         else
-            stat.lettres_1(double(mot(i-1)),double(mot(i)))=stat.lettres_1(double(mot(i-1)),double(mot(i)))+1;
-
+            stat.lettre(double(mot(i-1)),double(mot(i)))=stat.lettre(double(mot(i-1)),double(mot(i)))+2;
+                           %(lettre precedente, lettre suivante)
             if i>2
-                stat.lettres_2(double(mot(i-2)),double(mot(i)))=stat.lettres_2(double(mot(i-2)),double(mot(i)))+1;
+                stat.lettre(double(mot(i-2)),double(mot(i)))=stat.lettre(double(mot(i-2)),double(mot(i)))+1;
             end        
             if mot(i)=='/';
 %                 disp('mot(i) = /')
@@ -92,11 +96,11 @@ disp('fin des calculs')
 toc
 
 %% Normalisation
-stat.taille =round(100* stat.taille/max(stat.taille));
-stat.lettres_1 =round(100* stat.lettres_1/max(max(stat.lettres_1)));
-stat.lettres_2 =round(100* stat.lettres_2/max(max(stat.lettres_2)));
-stat.lettre = stat.lettres_1 + stat.lettres_2;
-stat.start_1 = round(100*stat.start_1/max(stat.start_1));
+% stat.taille =round(100* stat.taille/max(stat.taille));
+% stat.lettres_1 =round(100* stat.lettres_1/max(max(stat.lettres_1)));
+% stat.lettres_2 =round(100* stat.lettres_2/max(max(stat.lettres_2)));
+% stat.lettre = stat.lettres_1 + stat.lettres_2;
+% stat.start_1 = round(100*stat.start_1/max(stat.start_1));
 
 %Calculs des totaux
 tot.taille = sum(stat.taille);
