@@ -2,8 +2,8 @@
 %function map=creer_map(langue)  %à mettre en string 's'
 
 global langue stat
-langue = 'fr_modif';
-filepath = [num2str(langue), '.txt'];
+langue = 'fr';
+filepath = [num2str(langue), '_modif.txt'];
 disp('Bonjour !')
 disp('Récupération du dictionnaire')
 fileID = fopen(filepath);
@@ -48,6 +48,8 @@ tic
 dim_dic =size(C{1}); %les mots
 k=0;
 disp('Calculs en cours...')
+nb_supp = 0;
+
 while k<dim_dic(1)
     k=k+1;
     if mod(k,2000)==0
@@ -56,11 +58,10 @@ while k<dim_dic(1)
     mot = C{1}{k};
     dim_mot= size(mot);
     i=1;
-    nb_supp = 0;
     while i<=dim_mot(2) 
         if (double(mot(i))>122 || (double(mot(i))<47) ||(double(mot(i))>47 && double(mot(i))<65)) || (double(mot(i))>90 && double(mot(i))<97) %ce n'est pas une lettre
             %disp(['Mot non pris en compte: ',mot])
-            nb_supp = nb
+            nb_supp = nb_supp +1;
             k=k+1;
             %disp(['Etape n°',num2str(k)])
             mot = C{1}{k};
@@ -92,6 +93,7 @@ while k<dim_dic(1)
     stat.taille(size(mot,2)) = stat.taille(size(mot,2)) + 1;
 %     disp('fin du mot') 
 end
+disp(['Nb de mot sautés: ', num2str(nb_supp), '/', num2str(dim_dic(1))])
 disp('fin des calculs')
 toc
 
