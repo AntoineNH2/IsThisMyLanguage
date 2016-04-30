@@ -72,35 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 BoutonEfface.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-
-
-                        /* Test de la lecture de la matrice
-                        filename = "test.txt";
-                        matrice = new int[0][];
-
-
-                        ReadMatrixTxt2 LitMatrice = new ReadMatrixTxt2();
-                        try {
-                            ////Log.v("matrice","récupère la matrice");
-                            matrice = ReadMatrixTxt2.read2(filename, MainActivity.this);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        MatrStr = new StringBuffer();
-                        int i;
-                        int j;
-
-                        for (i=0;i<4;i++){
-                            for (j=0;j<3;j++){
-                                MatrStr.append(String.valueOf(matrice[i][j]));
-                                MatrStr.append(' ');
-                                ////Log.v("affiche",String.valueOf(matrice[i][j]));
-                            }
-                        }
-                        ////Log.v("final", String.valueOf(MatrStr));
-                        */
-
-
                         // normalement matrices loadées !
 
                         motCree = motAlea1.methode2(mArray);
@@ -113,4 +84,4 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-        }
+}

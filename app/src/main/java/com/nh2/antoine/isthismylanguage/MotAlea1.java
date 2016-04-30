@@ -34,6 +34,7 @@ public class MotAlea1 {
 
     private char lStart;
     private char lPrecedente;
+    private char lPrecedente_2;
     private char lSuivant;
     private String motAlea;
 
@@ -51,9 +52,11 @@ public class MotAlea1 {
 
 
         lPrecedente = lStart;
+        lPrecedente_2 = '0';
         int k;
         for (k=0;k<tailleMot; k++){
-            lSuivant = probaLettre.getSuivante(mArray.get(2),lPrecedente);
+            lSuivant = probaLettre.getSuivante(mArray.get(2), mArray.get(3),lPrecedente, lPrecedente_2);
+            lPrecedente_2 = lPrecedente;
             lPrecedente = lSuivant;
             motAlea +=lSuivant;
         }

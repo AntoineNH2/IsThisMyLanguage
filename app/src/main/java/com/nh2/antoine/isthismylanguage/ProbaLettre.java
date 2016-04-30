@@ -30,6 +30,7 @@ public class ProbaLettre {
     private int taille;
     private char lStart;
     private char lSuivante;
+    private int iSuivante;
 
     private String filename;
 
@@ -39,14 +40,13 @@ public class ProbaLettre {
     public ArrayList<int[][]> LoadMatrice (String langue, Context mContext){
 
         mArray = new ArrayList<int[][]>();
-        int ifile =3; // Taille, Start, Lettre !!!!!!
-        int i = 0;
-        String[] file= { "taille_", "start_", "lettre_"};
+        String[] file= { "taille_", "start_", "lettres_1_", "lettres_2_"};
+        int ifile = file.length;
 
-
+        int i;
         for (i=0;i<ifile;i++) {
             filename = file[i] + langue + ".txt";
-            //Log.v("ProbaLettre filename = ", filename);
+            Log.v("ProbaLettre filename = ", filename);
             matrice = new int[0][];
             try {
                 //Log.v("ProbaLettre Load","récupère la matrice "+filename);
@@ -89,21 +89,40 @@ public class ProbaLettre {
     }
 
 
-    public char getSuivante (int[][] mLettre, char lPrecedente){
+    public char getSuivante (int[][] mLettre_1, int[][] mLettre_2, char lPrecedente, char lPrecedente_2){
         Log.v("ProbaLettre ", "get Suivant");
         // pour récupérer une première lettre au hasard
 
         int i=0;
         int iPrecedente = (int) lPrecedente;
+        int iPrecedente_2 = (int) lPrecedente_2;
 
         //Log.v("ProbaLettre lPrecedente", String.valueOf(lPrecedente));
 
 
-        loi= new int[mLettre.length];
+        String sLoi= "";
+        loi= new int[mLettre_1.length];
+        String sLoi2 = "";
         for (i=0; i<loi.length;i++){
-            loi[i]=mLettre[iPrecedente][i];
+            loi[i]=mLettre_1[iPrecedente][i];
+            sLoi += String.valueOf(loi[i]) + " ";
+            sLoi2 += String.valueOf(mLettre_2[iPrecedente_2][i]) + " ";
         }
-        lSuivante = (char) alea_perso(loi);
+
+
+        int nb = 0;
+        // verif avec mLettre_2 que c'est bon
+        do {
+            iSuivante = alea_perso(loi);
+            nb +=1;
+            Log.v("ProbaLettre current_nb= ", String.valueOf(nb));
+            Log.v("ProbaLettre mLettres_2("+ iPrecedente_2 +"," + iSuivante+ ") =", String.valueOf(mLettre_2[iPrecedente_2][iSuivante]));
+            Log.v("Probalettre Loi 1 ", lPrecedente + " " + sLoi);
+            Log.v("Probalettre Loi 2 ", lPrecedente_2 + " " + sLoi2);
+
+        }while(iPrecedente_2 != 48 && mLettre_2[iPrecedente_2][iSuivante] < 10 && nb <10 );
+        lSuivante = (char) iSuivante;
+
         ////Log.v("ProbaLettre lSuivante", String.valueOf(lSuivante));
         return lSuivante;
     }
@@ -127,6 +146,8 @@ passé en paramètre */
             i++;
         }while(somme < x);
         Log.v("ProbaLettre i= ", String.valueOf(i));
+        Log.v("Probalettre ilettre = ", String.valueOf((char)i));
+        Log.v("Probalettre x= ", String.valueOf(x));
         return i;
     }
 
