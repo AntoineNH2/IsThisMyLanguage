@@ -21,18 +21,17 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Envoi un mot !"
+        android:text="Aléatoire complet"
         android:id="@+id/BalanceBouton"
         android:layout_below="@+id/MotAleaTxtView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Envoi un mot (mieux?) !"
+        android:text="Aléatoire qui bug"
         android:id="@+id/EraseButton"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/MatrixView"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -41,9 +40,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Clique sur le bouton :) !"
         android:id="@+id/MatrixView"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/BalanceBouton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,9 +50,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Clique sur le bouton :) !"
         android:id="@+id/methode3View"
-        android:layout_marginTop="72dp"
-        android:layout_below="@+id/EraseButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/MatrixView"
+        android:layout_alignStart="@+id/MatrixView" />
 
     <Button
         android:layout_width="wrap_content"
@@ -64,5 +63,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
         android:nestedScrollingEnabled="false" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loader les matrices !"
+        android:id="@+id/loadButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp" />
 
 </RelativeLayout>

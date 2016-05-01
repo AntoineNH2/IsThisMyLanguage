@@ -37,17 +37,18 @@ public class ProbaLettre {
 
     private int[] loi;
 
-    public int[][][] LoadDico (String langue, Context mContext){
+    public ArrayList<int[][]> LoadDico (String langue, Context mContext){
 
-        int[][][] fCount = new int[0][][];
-        filename = langue + ".txt";
+        mArray = new ArrayList<int[][]>();
+        filename = langue + "_light.txt";
+        // pas d'accent sur les n sinon >255 !
         try {
             Log.v("ProbaLettre LoadDico","récupère la matrice de "+filename);
-            fCount = ReadMatrixTxt2.readDico(filename, mContext);
+            mArray = ReadMatrixTxt2.readDico(filename, mContext);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return fCount;
+        return mArray;
     }
 
     public int[][][] LoadBinaire (String langue, Context mContext){
@@ -72,6 +73,28 @@ public class ProbaLettre {
         //}
         return fCount;
     }
+
+    public int getLettre3D(ArrayList<int[][]> mArray, int iPrecedente, int iPrecedente_2){
+
+        Log.v("ProbaLettre", "GET LETTRE MATRICE 3D array");
+
+        matrice = mArray.get(iPrecedente_2);
+
+        int[] loi = new int[matrice.length];
+
+        int i;
+        String sLoi="" ;
+        for (i=0; i<loi.length;i++){
+            loi[i]=matrice[iPrecedente][i];
+                sLoi += String.valueOf(loi[i]) + " ";
+            //    sLoi2 += String.valueOf(mLettre_2[iPrecedente_2][i]) + " ";
+        }
+        Log.v("Probalettre Loi 1 ", (char) iPrecedente + " " + sLoi);
+
+        iSuivante = alea_perso(loi);
+        return iSuivante;
+    }
+
 
     public int getLettre(int[][][] matrice, int iPrecedente, int iPrecedente_2){
 
@@ -207,7 +230,7 @@ public class ProbaLettre {
         do{
             somme += loi[i];
             i++;
-        }while(somme < randomNum);
+        }while(somme < randomNum );
         Log.v("ProbaLettre i= ", String.valueOf(i));
         Log.v("Probalettre ilettre = ", String.valueOf((char)i));
         Log.v("Probalettre x= ", String.valueOf(randomNum));

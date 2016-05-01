@@ -160,7 +160,7 @@ public class ReadMatrixTxt2 {
 
     public static ArrayList<int[][]> readDico (String filename, Context context) throws FileNotFoundException{
 
-        ArrayList <int[][]> mArray;
+        ArrayList <int[][]> mArray = new ArrayList<int[][]>();
         // mArray.get(iPrec2) [iPrec][iSuiv]
 
         Context mContext = context;
@@ -170,6 +170,10 @@ public class ReadMatrixTxt2 {
         BufferedReader input = null;
         int rows = 0;
         int columns = 0;
+        int nb;
+        for(nb=0;nb<256;nb++){
+            mArray.add(matrice);
+        }
 
         int[][] matrice_sum = new int[256][256];
         try {
@@ -180,33 +184,41 @@ public class ReadMatrixTxt2 {
                 String line;
                 // récupère la matrice entière:
                 Log.v("ReadMatrixTxt2_readBin"," lecture en cours...");
+                int nMot=1;
                 while ((line=input.readLine()) != null) {
+                //    Log.v("ReadDico", "nMot = " + nMot);
                     // récupère le mot !
                     int i=0;
-                    int iPrec=0;
-                    int iPrec2=0;
-                    int iSuiv =0;
+                    int iPrec=0, iPrec2=0, iSuiv=0;
                     while(i<line.length() && iSuiv!= (int) '/' && iSuiv != (int) ' ' ){
+                        //Log.v("ReadDico", "i = " + i);
                         iSuiv = (int) line.charAt(i);
+                        //Log.v("ReadDico", "iPrec = " + iPrec);
+                        //Log.v("ReadDico", "iPrec2 = " + iPrec2);
+                        //Log.v("ReadDico", "iSuiv = " + iSuiv);
                         matrice = mArray.get(iPrec2);
                         matrice[iPrec][iSuiv] +=1;
+                        mArray.set(iPrec2,matrice);
                         matrice_sum[iPrec][iPrec2] += 1;
                         iPrec2 = iPrec;
                         iPrec = iSuiv;
                         i++;
                     }
+                    nMot +=1;
                 }
 
                 // normalisation
-                int i, j, k;
+                int iPrec=0, iPrec2=0, iSuiv=0;
                 float temp;
-                for (i=0;i<matrice.length; i++){
-                    for(j=0;j<matrice.length; j++){
-                        for (k=0;k<matrice.length;k++){
-                            temp = ((float) 100* matrice[i][j][k]) / (matrice_sum[i][j]);
-                            matrice[i][j][k] = (int) temp;
+                for (iPrec2=0;iPrec2<matrice.length; iPrec2++){
+                    matrice = mArray.get(iPrec2);
+                    for(iPrec=0;iPrec<matrice.length; iPrec++){
+                        for (iSuiv=0;iSuiv<matrice.length;iSuiv++){
+                            temp = ((float) 100* matrice[iPrec][iSuiv]) / (matrice_sum[iPrec][iSuiv]);
+                            matrice[iPrec][iSuiv] = (int) temp;
                         }
                     }
+                    mArray.set(iPrec2, matrice);
                 }
 
                 //Log.v("class",String.valueOf(rows));
@@ -222,7 +234,7 @@ public class ReadMatrixTxt2 {
                 throw new RuntimeException("Error while closing input stream: " + e);
             }
         }
-        return matrice;
+        return mArray;
     }
 
 }

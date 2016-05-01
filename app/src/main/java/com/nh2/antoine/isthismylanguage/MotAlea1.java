@@ -78,8 +78,6 @@ public class MotAlea1 {
         int iPrecedente_2=0;
         int iSuivant;
 
-
-
         int nb;
         for (nb=2;nb<tailleMot;nb++) {
             iSuivant = probaLettre.getLettre(matrice, iPrecedente, iPrecedente_2);
@@ -89,5 +87,31 @@ public class MotAlea1 {
         }
         return motAlea;
     }
+
+    public String methode4 (ArrayList<int[][]> mArray){
+        ProbaLettre probaLettre = new ProbaLettre();
+
+        Random rand = new Random();
+        // nextInt is normally exclusive of the top value,
+        // so add 1 to make it inclusive
+        // int randomNum = rand.nextInt((max - min) + 1) + min;
+        int max = 14;
+        int min = 5;
+        tailleMot = rand.nextInt((max - min) + 1) + min;
+
+        int iPrecedente=0;
+        int iPrecedente_2=0;
+        int iSuivant;
+
+        int nb;
+        for (nb=0;nb<tailleMot;nb++) {
+            iSuivant = probaLettre.getLettre3D(mArray, iPrecedente, iPrecedente_2);
+            iPrecedente_2 = iPrecedente;
+            iPrecedente = iSuivant;
+            motAlea+=(char)iSuivant;
+        }
+        return motAlea;
+    }
+
 
 }

@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button BoutonAlea = null;
     private Button BoutonEfface = null;
     private Button Bouton3 = null;
+    private Button BoutonLoad = null;
 
     private int tailleMot = 0;
     private char lStart;
@@ -36,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
     private StringBuffer MatrStr;
 
     private ArrayList<int[][]> mArray;
+    private ArrayList<int[][]> mArray3D;
     private int[][][] iCount;
     private int[][][] matrice3D;
+    private boolean isAppuyer = false;
 
 
     @Override
@@ -46,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final ProbaLettre probaLettre = new ProbaLettre();
-        mArray = probaLettre.LoadMatrice("fr", MainActivity.this);
         final MotAlea1 motAlea1 = new MotAlea1();
-        //    //Log.v("Initialisation", "matrices loadées");
-     //   iCount = probaLettre.LoadBinaire("fr", MainActivity.this);
-        matrice3D = probaLettre.LoadDico("fr", MainActivity.this);
+
+
+
 
         BoutonAlea = (Button) findViewById(R.id.BalanceBouton);
+        BoutonAlea.setEnabled(false);
         BoutonAlea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         BoutonEfface = (Button) findViewById(R.id.EraseButton);
+        BoutonEfface.setEnabled(false);
         BoutonEfface.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,14 +94,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Bouton3 = (Button) findViewById(R.id.methode3Button);
+        Bouton3.setEnabled(false);
         Bouton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                motCree = motAlea1.methode3(matrice3D);
+                motCree = motAlea1.methode4(mArray3D);
                 TextAlea = (TextView) findViewById(R.id.methode3Button);
                 TextAlea.setText(motCree);
             }
         });
+
+        BoutonLoad = (Button) findViewById(R.id.loadButton);
+        BoutonLoad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("MainActivity: ", "DEBUT DU LOADING");
+                isAppuyer = true;
+                mArray = probaLettre.LoadMatrice("fr", MainActivity.this);
+                //    //Log.v("Initialisation", "matrices loadées");
+                //   iCount = probaLettre.LoadBinaire("fr", MainActivity.this);
+                mArray3D = probaLettre.LoadDico("fr", MainActivity.this);
+                BoutonAlea.setEnabled(isAppuyer);
+                BoutonEfface.setEnabled(isAppuyer);
+                Bouton3.setEnabled(isAppuyer);
+                BoutonLoad.setEnabled(false);
+                Log.v("MainActivity: ", "LOADING FINI !!");
+            }
+        });
+
 
     }
 }
