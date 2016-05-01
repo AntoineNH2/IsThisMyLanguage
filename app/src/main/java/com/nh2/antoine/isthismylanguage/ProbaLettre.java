@@ -234,6 +234,6 @@ public class ProbaLettre {
         Log.v("ProbaLettre i= ", String.valueOf(i));
         Log.v("Probalettre ilettre = ", String.valueOf((char)i));
         Log.v("Probalettre x= ", String.valueOf(randomNum));
-        return i;
+        return i-1;
     }
 }
