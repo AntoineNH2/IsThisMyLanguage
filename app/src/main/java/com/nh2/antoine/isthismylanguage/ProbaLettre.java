@@ -31,10 +31,24 @@ public class ProbaLettre {
     private int taille;
     private char lStart;
     private char lSuivante;
+    private int iSuivante;
 
     private String filename;
 
     private int[] loi;
+
+    public int[][][] LoadDico (String langue, Context mContext){
+
+        int[][][] fCount = new int[0][][];
+        filename = langue + ".txt";
+        try {
+            Log.v("ProbaLettre LoadDico","récupère la matrice de "+filename);
+            fCount = ReadMatrixTxt2.readDico(filename, mContext);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return fCount;
+    }
 
     public int[][][] LoadBinaire (String langue, Context mContext){
 
@@ -61,7 +75,7 @@ public class ProbaLettre {
 
     public int getLettre(int[][][] matrice, int iPrecedente, int iPrecedente_2){
 
-        Log.v("ProbaLettre", "GET LETTRE BIN");
+        Log.v("ProbaLettre", "GET LETTRE MATRICE 3D");
 
         int[] loi = new int[matrice.length];
 
@@ -75,19 +89,16 @@ public class ProbaLettre {
         return iSuivante;
     }
 
-
-
     public ArrayList<int[][]> LoadMatrice (String langue, Context mContext){
 
         mArray = new ArrayList<int[][]>();
-        int ifile =3; // Taille, Start, Lettre !!!!!!
-        int i = 0;
-        String[] file= { "taille_", "start_", "lettre_"};
+        String[] file= { "taille_", "start_", "lettres_1_", "lettres_2_"};
+        int ifile = file.length;
 
-
+        int i;
         for (i=0;i<ifile;i++) {
             filename = file[i] + langue + ".txt";
-            //Log.v("ProbaLettre filename = ", filename);
+            Log.v("ProbaLettre filename = ", filename);
             matrice = new int[0][];
             try {
                 //Log.v("ProbaLettre Load","récupère la matrice "+filename);
@@ -129,17 +140,11 @@ public class ProbaLettre {
         return lStart;
     }
 
-<<<<<<< HEAD
     public char getSuivante (int[][] mLettre_1, int[][] mLettre_2, char lPrecedente, char lPrecedente_2){
-=======
-
-    public char getSuivante (int[][] mLettre, char lPrecedente){
->>>>>>> parent of 6a38fc2... Modif sur creermap pour ameliorer les matrices. Il faut encore améliorer le système pour sortir des mots convenables... Notamment le système de probabilité !!
         Log.v("ProbaLettre ", "get Suivant");
         // pour récupérer une première lettre au hasard
 
         int i=0;
-<<<<<<< HEAD
         int iPrecedente;
         //if (lPrecedente == 'a'){
         //     iPrecedente = ((int) lPrecedente);
@@ -147,18 +152,18 @@ public class ProbaLettre {
              iPrecedente = ((int) lPrecedente) - 1; // car les arrays débutent à 0 !!!!
         //}
         int iPrecedente_2 = ((int) lPrecedente_2)-1; // car les arrays débutent à 0 !!!!
-=======
-        int iPrecedente = (int) lPrecedente;
->>>>>>> parent of 6a38fc2... Modif sur creermap pour ameliorer les matrices. Il faut encore améliorer le système pour sortir des mots convenables... Notamment le système de probabilité !!
 
         //Log.v("ProbaLettre lPrecedente", String.valueOf(lPrecedente));
 
 
-        loi= new int[mLettre.length];
+        String sLoi= "";
+        loi= new int[mLettre_1.length];
+        String sLoi2 = "";
         for (i=0; i<loi.length;i++){
-            loi[i]=mLettre[iPrecedente][i];
+            loi[i]=mLettre_1[iPrecedente][i];
+            sLoi += String.valueOf(loi[i]) + " ";
+            sLoi2 += String.valueOf(mLettre_2[iPrecedente_2][i]) + " ";
         }
-<<<<<<< HEAD
 
 
         int nb = 0;
@@ -174,9 +179,6 @@ public class ProbaLettre {
         }while(iPrecedente_2 != 48 && mLettre_2[iPrecedente_2][iSuivante] < 5 && nb <10 );
         lSuivante = (char) (iSuivante);
 
-=======
-        lSuivante = (char) alea_perso(loi);
->>>>>>> parent of 6a38fc2... Modif sur creermap pour ameliorer les matrices. Il faut encore améliorer le système pour sortir des mots convenables... Notamment le système de probabilité !!
         ////Log.v("ProbaLettre lSuivante", String.valueOf(lSuivante));
         return lSuivante;
     }
@@ -207,11 +209,8 @@ public class ProbaLettre {
             i++;
         }while(somme < randomNum);
         Log.v("ProbaLettre i= ", String.valueOf(i));
-<<<<<<< HEAD
         Log.v("Probalettre ilettre = ", String.valueOf((char)i));
         Log.v("Probalettre x= ", String.valueOf(randomNum));
-=======
->>>>>>> parent of 6a38fc2... Modif sur creermap pour ameliorer les matrices. Il faut encore améliorer le système pour sortir des mots convenables... Notamment le système de probabilité !!
         return i;
     }
 }

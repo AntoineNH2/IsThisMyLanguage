@@ -158,4 +158,67 @@ public class ReadMatrixTxt2 {
         return matrice;
     }
 
+    public static int[][][] readDico (String filename, Context context) throws FileNotFoundException{
+
+        Context mContext = context;
+        int[][][] matrice = new int[256][256][256];
+        //Scanner input = new Scanner(new File(filename));
+        AssetManager assetManager = mContext.getAssets();
+        BufferedReader input = null;
+        int rows = 0;
+        int columns = 0;
+
+        int[][] matrice_sum = new int[256][256];
+        try {
+            input = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
+            Log.v("ReadMatrixTxt2_readBin", "récupère le ficher " + filename);
+            // pre-read in the number of rows/columns
+            try {
+                String line;
+                int iPrec=0;
+                int iPrec2=0;
+                int iSuiv =0;
+                // récupère la matrice entière:
+                Log.v("ReadMatrixTxt2_readBin"," lecture en cours...");
+                while ((line=input.readLine()) != null) {
+                    // récupère le mot !
+                    int i=0;
+                    while(i<line.length() && iSuiv!= (int) '/' && iSuiv != (int) ' ' ){
+                        iSuiv = (int) line.charAt(i);
+                        matrice[iPrec][iPrec2][iSuiv] +=1;
+                        matrice_sum[iPrec][iPrec2] += 1;
+                        iPrec2 = iPrec;
+                        iPrec = iSuiv;
+                        i++;
+                    }
+                }
+
+                // normalisation
+                int i, j, k;
+                float temp;
+                for (i=0;i<matrice.length; i++){
+                    for(j=0;j<matrice.length; j++){
+                        for (k=0;k<matrice.length;k++){
+                            temp = ((float) 100* matrice[i][j][k]) / (matrice_sum[i][j]);
+                            matrice[i][j][k] = (int) temp;
+                        }
+                    }
+                }
+
+                //Log.v("class",String.valueOf(rows));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                input.close();
+            } catch (IOException e) {
+                throw new RuntimeException("Error while closing input stream: " + e);
+            }
+        }
+        return matrice;
+    }
+
 }

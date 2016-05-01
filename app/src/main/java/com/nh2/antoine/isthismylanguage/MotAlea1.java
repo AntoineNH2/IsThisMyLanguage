@@ -37,6 +37,7 @@ public class MotAlea1 {
 
     private char lStart;
     private char lPrecedente;
+    private char lPrecedente_2;
     private char lSuivant;
     private String motAlea="";
 
@@ -49,22 +50,18 @@ public class MotAlea1 {
         //Log.v("1ere lettre", String.valueOf(lStart));
         motAlea =String.valueOf(lStart);
         lPrecedente = lStart;
+        lPrecedente_2 = '0';
         int k;
         for (k=0;k<tailleMot; k++){
-<<<<<<< HEAD
             Log.v("MotAlea1 lPrecedent", String.valueOf(lPrecedente));
             Log.v("MotAlea1 lPrecedent_2", String.valueOf(lPrecedente_2));
             lSuivant = probaLettre.getSuivante(mArray.get(2), mArray.get(3),lPrecedente, lPrecedente_2);
             lPrecedente_2 = lPrecedente;
-=======
-            lSuivant = probaLettre.getSuivante(mArray.get(2),lPrecedente);
->>>>>>> parent of 6a38fc2... Modif sur creermap pour ameliorer les matrices. Il faut encore améliorer le système pour sortir des mots convenables... Notamment le système de probabilité !!
             lPrecedente = lSuivant;
             motAlea +=lSuivant;
         }
         return motAlea;
     }
-
 
     public String methode3 (int[][][] matrice){
         ProbaLettre probaLettre = new ProbaLettre();
@@ -81,8 +78,10 @@ public class MotAlea1 {
         int iPrecedente_2=0;
         int iSuivant;
 
+
+
         int nb;
-        for (nb=0;nb<tailleMot;nb++) {
+        for (nb=2;nb<tailleMot;nb++) {
             iSuivant = probaLettre.getLettre(matrice, iPrecedente, iPrecedente_2);
             iPrecedente_2 = iPrecedente;
             iPrecedente = iSuivant;

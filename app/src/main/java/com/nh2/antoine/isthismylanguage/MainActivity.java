@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<int[][]> mArray;
     private int[][][] iCount;
+    private int[][][] matrice3D;
 
 
     @Override
@@ -48,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         mArray = probaLettre.LoadMatrice("fr", MainActivity.this);
         final MotAlea1 motAlea1 = new MotAlea1();
         //    //Log.v("Initialisation", "matrices loadées");
-        iCount = probaLettre.LoadBinaire("fr", MainActivity.this);
-
+     //   iCount = probaLettre.LoadBinaire("fr", MainActivity.this);
+        matrice3D = probaLettre.LoadDico("fr", MainActivity.this);
 
         BoutonAlea = (Button) findViewById(R.id.BalanceBouton);
         BoutonAlea.setOnClickListener(new View.OnClickListener() {
@@ -72,48 +73,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
         BoutonEfface = (Button) findViewById(R.id.EraseButton);
         BoutonEfface.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // normalement matrices loadées !
-=======
-                BoutonEfface = (Button) findViewById(R.id.EraseButton);
-                BoutonEfface.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v){
-
-
-                        /* Test de la lecture de la matrice
-                        filename = "test.txt";
-                        matrice = new int[0][];
-
-
-                        ReadMatrixTxt2 LitMatrice = new ReadMatrixTxt2();
-                        try {
-                            ////Log.v("matrice","récupère la matrice");
-                            matrice = ReadMatrixTxt2.read2(filename, MainActivity.this);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        MatrStr = new StringBuffer();
-                        int i;
-                        int j;
-
-                        for (i=0;i<4;i++){
-                            for (j=0;j<3;j++){
-                                MatrStr.append(String.valueOf(matrice[i][j]));
-                                MatrStr.append(' ');
-                                ////Log.v("affiche",String.valueOf(matrice[i][j]));
-                            }
-                        }
-                        ////Log.v("final", String.valueOf(MatrStr));
-                        */
-
-
-                        // normalement matrices loadées !
->>>>>>> parent of 6a38fc2... Modif sur creermap pour ameliorer les matrices. Il faut encore améliorer le système pour sortir des mots convenables... Notamment le système de probabilité !!
 
                 motCree = motAlea1.methode2(mArray);
                 //Log.v("Mot aléatoire ", motAlea);
@@ -129,15 +93,11 @@ public class MainActivity extends AppCompatActivity {
         Bouton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                motCree = motAlea1.methode3(iCount);
+                motCree = motAlea1.methode3(matrice3D);
                 TextAlea = (TextView) findViewById(R.id.methode3Button);
                 TextAlea.setText(motCree);
             }
-<<<<<<< HEAD
         });
 
     }
 }
-=======
-        }
->>>>>>> parent of 6a38fc2... Modif sur creermap pour ameliorer les matrices. Il faut encore améliorer le système pour sortir des mots convenables... Notamment le système de probabilité !!
