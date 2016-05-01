@@ -16,8 +16,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/MotAleaTxtView"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -33,9 +32,8 @@
         android:layout_height="wrap_content"
         android:text="Envoi un mot (mieux?) !"
         android:id="@+id/EraseButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,7 +41,28 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Clique sur le bouton :) !"
         android:id="@+id/MatrixView"
-        android:layout_above="@+id/EraseButton"
+        android:layout_below="@+id/BalanceBouton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="77dp" />
+        android:layout_marginTop="55dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Clique sur le bouton :) !"
+        android:id="@+id/methode3View"
+        android:layout_marginTop="72dp"
+        android:layout_below="@+id/EraseButton"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aller ca va marcher avec cette méthode !"
+        android:id="@+id/methode3Button"
+        android:layout_below="@+id/methode3View"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:nestedScrollingEnabled="false" />
+
 </RelativeLayout>

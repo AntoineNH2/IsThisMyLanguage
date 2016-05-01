@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python2.7
 # -*- coding: utf-8 -*-	
 """
 This is a short script to randomly generate words based on the transition
@@ -17,7 +17,7 @@ http://sciencetonnante.wordpress.com
 
 import codecs
 import re
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as np
 from numpy.random import choice, seed
 seed(1)
@@ -30,13 +30,15 @@ seed(1)
 # Input file containing one word per line, and its encoding
 # Assumes one word per line but if the the words are followed by 
 # a space, a tab, a slash, a comma, etc....the end of the line will be trimmed
-dic_file = r"data/HU.txt"
+dic_file = r"fr.txt"
 encoding = "ISO-8859-1"
 
 # Name of the output binary matrix, matrix image file and output txt file
-count_file = r"count_HU.bin"
-proba_matrix = r"matrix_HU.png"
-outfile = r"output_HU.txt"
+count_file = r"count_FR.bin"
+proba_matrix = r"matrix_FR.png"
+outfile = r"output_FR.txt"
+
+count_file_norm = r"count_norm_fr.bin"
 
 # For the random generator : what is the minimum and maximum number of letters
 # in the words that we want to generate, and how many words for each length
@@ -67,6 +69,14 @@ with codecs.open(dic_file, "r", encoding) as lines:
 # Save the results for later use
 count.tofile(count_file)
 
+# Save the results normalized
+s=count.sum(axis=2)
+st=np.tile(s.T,(256,1,1)).T
+p=count.astype('float')/st
+p[np.isnan(p)]=0
+
+p.tofile(count_file_norm)
+
 ###############################################################################
 
 # 2D plot
@@ -75,25 +85,25 @@ count.tofile(count_file)
 # This is an optional 2D plot showing bigram probabilities
 # We have to do a partial sum on the 3D matrix to go fro trigram to bigram
 
-count2D=count.sum(axis=0)
-p2D=count2D.astype('float')/np.tile(sum(count2D.T),(256,1)).T
-p2D[np.isnan(p2D)] = 0
+#count2D=count.sum(axis=0)
+#p2D=count2D.astype('float')/np.tile(sum(count2D.T),(256,1)).T
+#p2D[np.isnan(p2D)] = 0
 
 # For better contrast, we plot p^alpha instead of p
-alpha = 0.33
-p2Da = p2D**alpha
+#alpha = 0.33
+#p2Da = p2D**alpha
 
 # We display only letters a to z, ie ASCII from 97 to 123.
-plt.figure(figsize=(8,8))
-plt.imshow(p2Da[97:123,97:123],interpolation='nearest')
-plt.axis('off')
+#plt.figure(figsize=(8,8))
+#plt.imshow(p2Da[97:123,97:123],interpolation='nearest')
+#plt.axis('off')
 
-for i in range(97,123):
-    plt.text(-1,i-97,chr(i),horizontalalignment='center',
-                            verticalalignment='center')
-    plt.text(i-97,-1,chr(i),horizontalalignment='center',
-                            verticalalignment='center')
-plt.savefig(proba_matrix)
+#for i in range(97,123):
+#    plt.text(-1,i-97,chr(i),horizontalalignment='center',
+#                            verticalalignment='center')
+#    plt.text(i-97,-1,chr(i),horizontalalignment='center',
+#                            verticalalignment='center')
+#plt.savefig(proba_matrix)
 
 ###############################################################################
 

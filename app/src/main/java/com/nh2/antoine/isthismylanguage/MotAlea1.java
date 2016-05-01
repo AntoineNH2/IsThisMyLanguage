@@ -1,7 +1,10 @@
 package com.nh2.antoine.isthismylanguage;
 
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by antoine on 26/04/16.
@@ -35,27 +38,55 @@ public class MotAlea1 {
     private char lStart;
     private char lPrecedente;
     private char lSuivant;
-    private String motAlea;
+    private String motAlea="";
 
 
     public String methode2 (ArrayList<int[][]> mArray){
-
         ProbaLettre probaLettre = new ProbaLettre();
-
         tailleMot = probaLettre.getTaille(mArray.get(0));
         //Log.v("taille mot =",String.valueOf(tailleMot));
-
         lStart = probaLettre.getStart(mArray.get(1));
         //Log.v("1ere lettre", String.valueOf(lStart));
         motAlea =String.valueOf(lStart);
-
-
         lPrecedente = lStart;
         int k;
         for (k=0;k<tailleMot; k++){
+<<<<<<< HEAD
+            Log.v("MotAlea1 lPrecedent", String.valueOf(lPrecedente));
+            Log.v("MotAlea1 lPrecedent_2", String.valueOf(lPrecedente_2));
+            lSuivant = probaLettre.getSuivante(mArray.get(2), mArray.get(3),lPrecedente, lPrecedente_2);
+            lPrecedente_2 = lPrecedente;
+=======
             lSuivant = probaLettre.getSuivante(mArray.get(2),lPrecedente);
+>>>>>>> parent of 6a38fc2... Modif sur creermap pour ameliorer les matrices. Il faut encore améliorer le système pour sortir des mots convenables... Notamment le système de probabilité !!
             lPrecedente = lSuivant;
             motAlea +=lSuivant;
+        }
+        return motAlea;
+    }
+
+
+    public String methode3 (int[][][] matrice){
+        ProbaLettre probaLettre = new ProbaLettre();
+
+        Random rand = new Random();
+        // nextInt is normally exclusive of the top value,
+        // so add 1 to make it inclusive
+        // int randomNum = rand.nextInt((max - min) + 1) + min;
+        int max = 14;
+        int min = 5;
+        tailleMot = rand.nextInt((max - min) + 1) + min;
+
+        int iPrecedente=0;
+        int iPrecedente_2=0;
+        int iSuivant;
+
+        int nb;
+        for (nb=0;nb<tailleMot;nb++) {
+            iSuivant = probaLettre.getLettre(matrice, iPrecedente, iPrecedente_2);
+            iPrecedente_2 = iPrecedente;
+            iPrecedente = iSuivant;
+            motAlea+=(char)iSuivant;
         }
         return motAlea;
     }

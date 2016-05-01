@@ -140,6 +140,28 @@ save(['stat_', num2str(langue),'.mat'], 'langue', 'stat')
 % title('Repartition des premieres lettres')
 
 
+<<<<<<< HEAD
+%% Modif sur lettres 1 et 2 pour en faire des pourcentages sommés
+
+stat.lettres_1b = stat.lettres_1;
+for ligne = 1:size(stat.lettres_1,1)
+    for col = size(stat.lettres_1,2):-1:2
+        stat.lettres_1b(ligne,col) = sum(stat.lettres_1(ligne,1:col-1));
+    end
+    
+   
+end
+
+stat.lettres_2b = stat.lettres_2;
+for ligne = 1:size(stat.lettres_2,1)
+    for col = size(stat.lettres_2,2):-1:2
+        stat.lettres_2b(ligne,col) = sum(stat.lettres_2(ligne,1:col-1));
+    end
+    
+end
+
+=======
+>>>>>>> parent of 6a38fc2... Modif sur creermap pour ameliorer les matrices. Il faut encore améliorer le système pour sortir des mots convenables... Notamment le système de probabilité !!
 %%
 
 dlmwrite(['taille_', langue, '.txt'],stat.taille)
