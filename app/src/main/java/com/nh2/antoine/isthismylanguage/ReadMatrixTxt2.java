@@ -158,10 +158,13 @@ public class ReadMatrixTxt2 {
         return matrice;
     }
 
-    public static int[][][] readDico (String filename, Context context) throws FileNotFoundException{
+    public static ArrayList<int[][]> readDico (String filename, Context context) throws FileNotFoundException{
+
+        ArrayList <int[][]> mArray;
+        // mArray.get(iPrec2) [iPrec][iSuiv]
 
         Context mContext = context;
-        int[][][] matrice = new int[256][256][256];
+        int[][] matrice = new int[256][256];
         //Scanner input = new Scanner(new File(filename));
         AssetManager assetManager = mContext.getAssets();
         BufferedReader input = null;
@@ -175,17 +178,18 @@ public class ReadMatrixTxt2 {
             // pre-read in the number of rows/columns
             try {
                 String line;
-                int iPrec=0;
-                int iPrec2=0;
-                int iSuiv =0;
                 // récupère la matrice entière:
                 Log.v("ReadMatrixTxt2_readBin"," lecture en cours...");
                 while ((line=input.readLine()) != null) {
                     // récupère le mot !
                     int i=0;
+                    int iPrec=0;
+                    int iPrec2=0;
+                    int iSuiv =0;
                     while(i<line.length() && iSuiv!= (int) '/' && iSuiv != (int) ' ' ){
                         iSuiv = (int) line.charAt(i);
-                        matrice[iPrec][iPrec2][iSuiv] +=1;
+                        matrice = mArray.get(iPrec2);
+                        matrice[iPrec][iSuiv] +=1;
                         matrice_sum[iPrec][iPrec2] += 1;
                         iPrec2 = iPrec;
                         iPrec = iSuiv;
