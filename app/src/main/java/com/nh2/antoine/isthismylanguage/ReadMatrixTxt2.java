@@ -178,48 +178,60 @@ public class ReadMatrixTxt2 {
         int[][] matrice_sum = new int[256][256];
         try {
             input = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
-            Log.v("ReadMatrixTxt2_readBin", "récupère le ficher " + filename);
+            Log.v("ReadMatrixTxt2_readDico", "récupère le ficher " + filename);
             // pre-read in the number of rows/columns
             try {
                 String line;
                 // récupère la matrice entière:
-                Log.v("ReadMatrixTxt2_readBin"," lecture en cours...");
+                Log.v("ReadMatrixTxt2_readDico"," lecture en cours...");
                 int nMot=1;
                 while ((line=input.readLine()) != null) {
                 //    Log.v("ReadDico", "nMot = " + nMot);
                     // récupère le mot !
                     int i=0;
                     int iPrec=0, iPrec2=0, iSuiv=0;
-                    while(i<line.length() && iSuiv!= (int) '/' && iSuiv != (int) ' ' ){
+                    iSuiv = (int) line.charAt(i);
+                    while(i<line.length() && iSuiv>64){
                         //Log.v("ReadDico", "i = " + i);
-                        iSuiv = (int) line.charAt(i);
                         //Log.v("ReadDico", "iPrec = " + iPrec);
                         //Log.v("ReadDico", "iPrec2 = " + iPrec2);
                         //Log.v("ReadDico", "iSuiv = " + iSuiv);
                         matrice = mArray.get(iPrec2);
                         matrice[iPrec][iSuiv] +=1;
                         mArray.set(iPrec2,matrice);
-                        matrice_sum[iPrec][iPrec2] += 1;
+                        matrice_sum[iPrec2][iPrec] += 1;
                         iPrec2 = iPrec;
                         iPrec = iSuiv;
                         i++;
+                        iSuiv = (int) line.charAt(i);
                     }
                     nMot +=1;
                 }
+                Log.v("ReadMatrixTxt2_readDico","Il y a eu "+String.valueOf(nMot) + " pris en compte");
 
                 // normalisation
                 int iPrec=0, iPrec2=0, iSuiv=0;
+                int num = 0;
                 float temp;
                 for (iPrec2=0;iPrec2<matrice.length; iPrec2++){
                     matrice = mArray.get(iPrec2);
                     for(iPrec=0;iPrec<matrice.length; iPrec++){
-                        for (iSuiv=0;iSuiv<matrice.length;iSuiv++){
-                            temp = ((float) 100* matrice[iPrec][iSuiv]) / (matrice_sum[iPrec][iSuiv]);
-                            matrice[iPrec][iSuiv] = (int) temp;
+                        if (matrice_sum[iPrec2][iPrec] != 0) {
+                            num += 1;
+                         //   Log.v("ReadMatrixTxt2_readDico", "matrice_sum [" + String.valueOf(iPrec2)+ "] [" + String.valueOf(iPrec) +"] =" + String.valueOf(matrice_sum[iPrec2][iPrec]));
+                            for (iSuiv = 0; iSuiv < matrice.length; iSuiv++) {
+
+                                temp = ((float) 100 * matrice[iPrec][iSuiv]) / ((float) matrice_sum[iPrec2][iPrec]);
+                                if (temp >1) {
+                                  Log.v("ReadMatrixTxt2_readDico", "matrice [" +String.valueOf(iPrec2)+ "] [" + String.valueOf(iPrec) + "] [" + String.valueOf(iSuiv) +"] ="  + String.valueOf(temp));
+                                }
+                                matrice[iPrec][iSuiv] = (int) temp;
+                            }
                         }
                     }
                     mArray.set(iPrec2, matrice);
                 }
+                Log.v("ReadMatrixTxt2_readDico", "fait normalisation " + String.valueOf(num) + " fois");
 
                 //Log.v("class",String.valueOf(rows));
             } catch (IOException e) {

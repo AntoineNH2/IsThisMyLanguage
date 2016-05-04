@@ -89,9 +89,10 @@ public class ProbaLettre {
                 sLoi += String.valueOf(loi[i]) + " ";
             //    sLoi2 += String.valueOf(mLettre_2[iPrecedente_2][i]) + " ";
         }
-        Log.v("Probalettre Loi 1 ", (char) iPrecedente + " " + sLoi);
+        Log.v("Probalettre Loi 1 ", (char) iPrecedente_2 + " puis " +(char) iPrecedente + " " + sLoi);
 
         iSuivante = alea_perso(loi);
+        //Log.v("Probalettre", "cSuivante: " + (char) iSuivante);
         return iSuivante;
     }
 
@@ -231,9 +232,9 @@ public class ProbaLettre {
             somme += loi[i];
             i++;
         }while(somme < randomNum );
-        Log.v("ProbaLettre i= ", String.valueOf(i));
-        Log.v("Probalettre ilettre = ", String.valueOf((char)i));
-        Log.v("Probalettre x= ", String.valueOf(randomNum));
+      //  Log.v("Probalettre x= ", String.valueOf(randomNum));
+      //  Log.v("ProbaLettre iLettre= ", String.valueOf(i));
+      //  Log.v("Probalettre cLettre = ", String.valueOf((char)i));
         return i-1;
     }
 }

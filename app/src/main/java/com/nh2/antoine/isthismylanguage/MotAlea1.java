@@ -39,7 +39,7 @@ public class MotAlea1 {
     private char lPrecedente;
     private char lPrecedente_2;
     private char lSuivant;
-    private String motAlea="";
+    private String motAlea;
 
 
     public String methode2 (ArrayList<int[][]> mArray){
@@ -89,6 +89,7 @@ public class MotAlea1 {
     }
 
     public String methode4 (ArrayList<int[][]> mArray){
+        motAlea="";
         ProbaLettre probaLettre = new ProbaLettre();
 
         Random rand = new Random();

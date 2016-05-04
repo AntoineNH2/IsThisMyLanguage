@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 motCree = motAlea1.methode4(mArray3D);
-                TextAlea = (TextView) findViewById(R.id.methode3Button);
+                TextAlea = (TextView) findViewById(R.id.methode3View);
                 TextAlea.setText(motCree);
             }
         });
