@@ -40,8 +40,8 @@ public class ProbaLettre {
     public ArrayList<int[][]> LoadDico (String langue, Context mContext){
 
         mArray = new ArrayList<int[][]>();
-        filename = langue + "_light.txt";
-        // pas d'accent sur les n sinon >255 !
+        filename = langue + "_modif.txt";   // "_modif" pas d'accent du tout
+        //"_light" pas d'accent sur les n sinon >255 !
         try {
             Log.v("ProbaLettre LoadDico","récupère la matrice de "+filename);
             mArray = ReadMatrixTxt2.readDico(filename, mContext);

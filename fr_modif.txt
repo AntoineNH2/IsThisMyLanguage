@@ -5094,7 +5094,7 @@ Sidonie	15
 Siegel	16
 Siegfried	14
 Siemens	12
-Sierpiński	16
+Sierpinski	16
 Sierra	20
 Sigebert	14
 Sigismond	14
