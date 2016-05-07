@@ -19,7 +19,6 @@ import java.util.List;
 
 /**
  * Cette fonction lit un fichier txt et le transforme en 2D-array
- * IL faut que dans le fichier TXT les valeurs soients des INT positifs et soient séparées par des ','
  *
  * Created by antoineNH2 on 26/04/16.
  */
@@ -194,10 +193,6 @@ public class ReadMatrixTxt2 {
                     int iPrec=0, iPrec2=0, iSuiv=0;
                     iSuiv = (int) line.charAt(i);
                     while(i<line.length() && (iSuiv>64 && iSuiv <123)){
-                        //Log.v("ReadDico", "i = " + i);
-                        //Log.v("ReadDico", "iPrec = " + iPrec);
-                        //Log.v("ReadDico", "iPrec2 = " + iPrec2);
-                        //Log.v("ReadDico", "iSuiv = " + iSuiv);
 
                         matrice = mArray.get(iPrec2);
                         matrice[iPrec][iSuiv] +=1;
@@ -226,8 +221,9 @@ public class ReadMatrixTxt2 {
                             matrice_sum[iPrec2][iPrec] += matrice[iPrec][iSuiv];
                             // on somme sur tout les suivants pour normaliser, pour la probabilité
 
-                            if (matrice[iPrec][iSuiv]>3000) {
-                                Log.v("ReadMatrixTxt2_readDico", "matrice ["+iPrec2+"][" + iPrec + "][" + iSuiv + "]= " + matrice[iPrec][iSuiv]);
+                            if (matrice[iPrec][iSuiv]>5000) {
+                      //          Log.v("ReadMatrixTxt2_readDico", "matrice ["+iPrec2+"][" + iPrec + "][" + iSuiv + "]= " + matrice[iPrec][iSuiv]);
+                        //        Log.v("ReadMatrixTxt2_readDico", "matrice_sum ["+iPrec2+"][" + iPrec + "]= " + matrice_sum[iPrec2][iPrec]);
                             }
                         }
                     }

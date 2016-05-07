@@ -29,7 +29,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aléatoire qui bug"
+        android:text="Aléatoire qui bug 1/5"
         android:id="@+id/EraseButton"
         android:layout_below="@+id/MatrixView"
         android:layout_centerHorizontal="true" />
@@ -50,19 +50,18 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Clique sur le bouton :) !"
         android:id="@+id/methode3View"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/MatrixView"
-        android:layout_alignStart="@+id/MatrixView" />
+        android:layout_marginTop="82dp"
+        android:layout_below="@+id/EraseButton"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aller ca va marcher avec cette méthode !"
+        android:text="Aller, ca va marcher avec cette méthode !"
         android:id="@+id/methode3Button"
+        android:nestedScrollingEnabled="false"
         android:layout_below="@+id/methode3View"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:nestedScrollingEnabled="false" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -71,7 +70,6 @@
         android:text="Loader les matrices !"
         android:id="@+id/loadButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
