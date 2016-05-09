@@ -162,7 +162,7 @@ public class ReadMatrixTxt2 {
         ArrayList <int[][]> mArray = new ArrayList<int[][]>();
         // mArray.get(iPrec2) [iPrec][iSuiv]
         
-        int long_matr = 256;
+        int long_matr = 256; //ASCII
 
         Context mContext = context;
         int[][] matrice = new int[long_matr][long_matr];
@@ -175,6 +175,9 @@ public class ReadMatrixTxt2 {
         for(nb=0;nb<long_matr;nb++){
             mArray.add(matrice);
         }
+
+        int[][] matrice_array = new int [long_matr][long_matr];
+        int[][] matrice_array2 = new int [long_matr][long_matr];
 
         int[][] matrice_sum = new int[long_matr][long_matr];
         try {
@@ -195,12 +198,13 @@ public class ReadMatrixTxt2 {
                     while(i<line.length() && (iSuiv>64 && iSuiv <123)){
 
                         matrice = mArray.get(iPrec2);
-                        matrice[iPrec][iSuiv] +=1;
+                        matrice_array = matrice;
+                        matrice_array[iPrec][iSuiv] +=1;
 
                      //   if (nMot < 20 || nMot > 75350) {
                      //       Log.v("ReadMatrixTxt2_readDico", "APRES matrice [" + iPrec2 + "] [" + iPrec + "] [" + iSuiv + "] = " + matrice[iPrec][iSuiv]);
                      //   }
-                        mArray.set(iPrec2,matrice);
+                        mArray.set(iPrec2,matrice_array);
                         iPrec2 = iPrec;
                         iPrec = iSuiv;
                         i++;
@@ -214,16 +218,16 @@ public class ReadMatrixTxt2 {
                 Log.v("ReadMatrixTxt2_readDico","création de la matrice normalisatrice");
                 int iPrec=0, iPrec2=0, iSuiv=0;
                 for (iPrec2=0; iPrec2<long_matr; iPrec2++){
-                    matrice = mArray.get(iPrec2);
+                    matrice_array2 = mArray.get(iPrec2);
                     for (iPrec=0;iPrec<long_matr; iPrec++){
                         for (iSuiv=0; iSuiv< long_matr; iSuiv++) {
 
-                            matrice_sum[iPrec2][iPrec] += matrice[iPrec][iSuiv];
+                            matrice_sum[iPrec2][iPrec] += matrice_array2[iPrec][iSuiv];
                             // on somme sur tout les suivants pour normaliser, pour la probabilité
 
-                            if (matrice[iPrec][iSuiv]>5000) {
-                      //          Log.v("ReadMatrixTxt2_readDico", "matrice ["+iPrec2+"][" + iPrec + "][" + iSuiv + "]= " + matrice[iPrec][iSuiv]);
-                        //        Log.v("ReadMatrixTxt2_readDico", "matrice_sum ["+iPrec2+"][" + iPrec + "]= " + matrice_sum[iPrec2][iPrec]);
+                            if (matrice_array2[iPrec][iSuiv]>0) {
+                                Log.v("ReadMatrixTxt2_readDico", "matrice ["+iPrec2+"][" + iPrec + "][" + iSuiv + "]= " + matrice_array2[iPrec][iSuiv]);
+                                Log.v("ReadMatrixTxt2_readDico", "matrice_sum ["+iPrec2+"][" + iPrec + "]= " + matrice_sum[iPrec2][iPrec]);
                             }
                         }
                     }
