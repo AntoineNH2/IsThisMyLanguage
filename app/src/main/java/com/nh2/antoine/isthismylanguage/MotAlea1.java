@@ -114,5 +114,35 @@ public class MotAlea1 {
         return motAlea;
     }
 
+    public String methode5 (short[][][] matrice){
+        motAlea="";
+        ProbaLettre probaLettre = new ProbaLettre();
+        Convertisseur convertisseur = new Convertisseur();
+
+        Random rand = new Random();
+        // nextInt is normally exclusive of the top value,
+        // so add 1 to make it inclusive
+        // int randomNum = rand.nextInt((max - min) + 1) + min;
+        int max = 14;
+        int min = 5;
+        tailleMot = rand.nextInt((max - min) + 1) + min;
+
+        int iPrecedente=0;
+        int iPrecedente_2=0;
+        int iSuivant;
+        char cSuivant;
+
+
+        int nb;
+        for (nb=0;nb<tailleMot;nb++) {
+            cSuivant = probaLettre.getSuivanteSimple(matrice, iPrecedente, iPrecedente_2);
+            iSuivant = convertisseur.getInt(cSuivant);
+
+            iPrecedente_2 = iPrecedente;
+            iPrecedente = iSuivant;
+            motAlea+=cSuivant;
+        }
+        return motAlea;
+    }
 
 }

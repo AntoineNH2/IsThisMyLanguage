@@ -78,6 +78,21 @@ public class ProbaLettre {
         return fCount;
     }
 
+    public short[][][] LoadSimple (String langue, Context mContext){
+        short[][][] matrice = new short[0][][];
+
+        filename = langue + ".txt";
+
+        Log.v("ProbaLette", "Load Simple");
+        try {
+            Log.v("ProbaLettre LoadDico","récupère la matrice de "+filename);
+            matrice = ReadMatrixTxt2.readDicoSimple(filename, mContext);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return matrice;
+    }
+
     public int getLettre3D(ArrayList<int[][]> mArray, int iPrecedente, int iPrecedente_2){
 
         Log.v("ProbaLettre", "GET LETTRE MATRICE 3D array");
@@ -99,7 +114,6 @@ public class ProbaLettre {
         //Log.v("Probalettre", "cSuivante: " + (char) iSuivante);
         return iSuivante;
     }
-
 
     public int getLettre(int[][][] matrice, int iPrecedente, int iPrecedente_2){
 
@@ -209,6 +223,33 @@ public class ProbaLettre {
 
         ////Log.v("ProbaLettre lSuivante", String.valueOf(lSuivante));
         return lSuivante;
+    }
+
+
+    public char getSuivanteSimple (short[][][] matrice, int iPrec2, int iPrec){
+        char lettre, cPrec2, cPrec;
+        int iSuiv;
+        Convertisseur convertisseur = new Convertisseur();
+
+        int[] loi = new int[matrice.length];
+
+        int i;
+        String sLoi="" ;
+        for (i=0; i<loi.length;i++){
+            loi[i]=matrice[iPrec2][iPrec][i];
+            sLoi += String.valueOf(loi[i]) + " ";
+            //    sLoi2 += String.valueOf(mLettre_2[iPrecedente_2][i]) + " ";
+        }
+
+        cPrec2 = convertisseur.getChar(iPrec2);
+        cPrec = convertisseur.getChar(iPrec);
+        Log.v("Probalettre Loi 1 ", cPrec2 + " puis " + cPrec + " " + sLoi);
+
+        iSuiv = alea_perso(loi);
+
+        lettre = convertisseur.getChar(iSuiv);
+
+        return lettre;
     }
 
     private int alea_perso(int loi[]){

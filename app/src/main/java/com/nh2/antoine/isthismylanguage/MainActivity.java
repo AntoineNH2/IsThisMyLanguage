@@ -114,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
                 //    //Log.v("Initialisation", "matrices loadées");
                 //   iCount = probaLettre.LoadBinaire("fr", MainActivity.this);
                 mArray3D = probaLettre.LoadDico("fr", MainActivity.this);
+
+                matSimple = probaLettre.
+
                 BoutonAlea.setEnabled(isAppuyer);
                 BoutonEfface.setEnabled(isAppuyer);
                 Bouton3.setEnabled(isAppuyer);
