@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
                 matSimple = probaLettre.LoadSimple("fr", MainActivity.this);
 
-             //   BoutonAlea.setEnabled(isAppuyer);
+                BoutonAlea.setEnabled(isAppuyer);
              //   BoutonEfface.setEnabled(isAppuyer);
                 Bouton3.setEnabled(isAppuyer);
                 BoutonLoad.setEnabled(false);

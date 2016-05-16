@@ -29,7 +29,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aléatoire qui bug 1/5"
+        android:text="Aléatoire qui crash 1/5"
         android:id="@+id/EraseButton"
         android:layout_below="@+id/MatrixView"
         android:layout_centerHorizontal="true" />
@@ -57,7 +57,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aller, ca va marcher avec cette méthode !"
+        android:text="Ca marche !! :)"
         android:id="@+id/methode3Button"
         android:nestedScrollingEnabled="false"
         android:layout_below="@+id/methode3View"

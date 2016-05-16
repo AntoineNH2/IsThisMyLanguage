@@ -20,7 +20,13 @@ public class MotAlea1 {
     public StringBuffer methode1 (){
         StringBuffer motAlea = new StringBuffer();
 
-        tailleMot = (int) (Math.random()*12 + 1);
+        Random rand = new Random();
+        // nextInt is normally exclusive of the top value,
+        // so add 1 to make it inclusive
+        // int randomNum = rand.nextInt((max - min) + 1) + min;
+        int max = 10;
+        int min = 5;
+        tailleMot = rand.nextInt((max - min) + 1) + min;
 
         for (int i = 1; i<= tailleMot; i++){
             // Crée la lettre
