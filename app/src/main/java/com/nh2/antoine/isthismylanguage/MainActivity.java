@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private int[][][] matrice3D;
     private boolean isAppuyer = false;
 
+    private short[][][] matSimple;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
         Bouton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                motCree = motAlea1.methode4(mArray3D);
+              //  motCree = motAlea1.methode4(mArray3D);
+                motCree = motAlea1.methode5(matSimple);
                 TextAlea = (TextView) findViewById(R.id.methode3View);
                 TextAlea.setText(motCree);
             }
@@ -110,15 +113,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.v("MainActivity: ", "DEBUT DU LOADING");
                 isAppuyer = true;
-                mArray = probaLettre.LoadMatrice("fr", MainActivity.this);
+             //   mArray = probaLettre.LoadMatrice("fr", MainActivity.this);
                 //    //Log.v("Initialisation", "matrices loadées");
                 //   iCount = probaLettre.LoadBinaire("fr", MainActivity.this);
-                mArray3D = probaLettre.LoadDico("fr", MainActivity.this);
+             //   mArray3D = probaLettre.LoadDico("fr", MainActivity.this);
 
-                matSimple = probaLettre.
+                matSimple = probaLettre.LoadSimple("fr", MainActivity.this);
 
-                BoutonAlea.setEnabled(isAppuyer);
-                BoutonEfface.setEnabled(isAppuyer);
+             //   BoutonAlea.setEnabled(isAppuyer);
+             //   BoutonEfface.setEnabled(isAppuyer);
                 Bouton3.setEnabled(isAppuyer);
                 BoutonLoad.setEnabled(false);
                 Log.v("MainActivity: ", "LOADING FINI !!");

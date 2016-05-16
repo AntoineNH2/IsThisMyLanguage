@@ -243,11 +243,13 @@ public class ProbaLettre {
 
         cPrec2 = convertisseur.getChar(iPrec2);
         cPrec = convertisseur.getChar(iPrec);
-        Log.v("Probalettre Loi 1 ", cPrec2 + " puis " + cPrec + " " + sLoi);
+    //    Log.v("Probalettre Loi: ", cPrec2 + " puis " + cPrec + " " + sLoi);
 
         iSuiv = alea_perso(loi);
 
         lettre = convertisseur.getChar(iSuiv);
+    //    Log.v("ProbaLettre", "cSuiv= " + lettre);
+
 
         return lettre;
     }
@@ -277,9 +279,8 @@ public class ProbaLettre {
             somme += loi[i];
             i++;
         }while(somme < randomNum );
-      //  Log.v("Probalettre x= ", String.valueOf(randomNum));
-      //  Log.v("ProbaLettre iLettre= ", String.valueOf(i));
-      //  Log.v("Probalettre cLettre = ", String.valueOf((char)i));
+     //   Log.v("Probalettre x= ", String.valueOf(randomNum));
+     //   Log.v("ProbaLettre iLettre= ", String.valueOf(i));
         return i-1;
     }
 }

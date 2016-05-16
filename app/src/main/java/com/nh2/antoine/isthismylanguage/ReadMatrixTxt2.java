@@ -312,13 +312,18 @@ public class ReadMatrixTxt2 {
                     // récupère le mot !
                     int i=0;
                     int iPrec=0, iPrec2=0, iSuiv=0;
+                    int asciiSuiv;
                     char cSuiv;
                     cSuiv = line.charAt(i);
+                //    Log.v("ReadMatrixTxt2_Read Simple", "cSuiv: " + cSuiv);
                     iSuiv = convertisseur.getInt(cSuiv);
-                    while(i<line.length() && cSuiv != ' ' && cSuiv != '/'){ // fin des mots => sortie
+                //    Log.v("ReadMatrixTxt2_Read Simple", "iSuiv: " + iSuiv);
+                    asciiSuiv = (int) cSuiv;
+                //    Log.v("ReadMatrixTxt2_Read Simple", "ASCIISuiv: " + asciiSuiv);
+                    while(i<line.length() && asciiSuiv >64){ // fin des mots => sortie
 
-                        matrice[iPrec2][iPrec][iSuiv] +=1;
-                        matrice_sum [iPrec2][iPrec] += 1;
+                        matrice[iPrec2][iPrec][iSuiv] ++;
+                        matrice_sum [iPrec2][iPrec] ++;
 
                         //   if (nMot < 20 || nMot > 75350) {
                         //       Log.v("ReadMatrixTxt2_readDico", "APRES matrice [" + iPrec2 + "] [" + iPrec + "] [" + iSuiv + "] = " + matrice[iPrec][iSuiv]);
@@ -328,7 +333,13 @@ public class ReadMatrixTxt2 {
                         iPrec = iSuiv;
                         i++;
                         cSuiv = line.charAt(i);
-                        iSuiv = convertisseur.getInt(cSuiv);
+                        asciiSuiv = (int) cSuiv;
+                        if (asciiSuiv >64) {
+                            iSuiv = convertisseur.getInt(cSuiv);
+                        }
+                        //  Log.v("ReadMatrixTxt2_Read Simple", "cSuiv: " + cSuiv);
+                      //  Log.v("ReadMatrixTxt2_Read Simple", "iSuiv: " + iSuiv);
+                      //  Log.v("ReadMatrixTxt2_Read Simple", "ASCIISuiv: " + asciiSuiv);
 
                     }
                     nMot +=1;
@@ -364,7 +375,7 @@ public class ReadMatrixTxt2 {
                         }
                     }
                 }
-                Log.v("ReadMatrixTxt2_readDico", "fait normalisation " + String.valueOf(num) + " fois, dont " + sup + " mauvaise...");
+                Log.v("ReadMatrixTxt2_readDico", "fait normalisation " + String.valueOf(num) + " fois");//, dont " + sup + " mauvaise...");
 
 
                 //Log.v("class",String.valueOf(rows));

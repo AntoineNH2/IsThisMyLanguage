@@ -26,10 +26,10 @@ public class Convertisseur {
     public int getInt (char lettre){
         int mlettre = (int) lettre;
         if (mlettre <= (int)'z' && mlettre >= (int)'a')  { //lettre classique
-            mlettre -= (int)'a' + 1;
+            mlettre -= ((int)'a' - 1);
             return  mlettre;
         }else if (mlettre >= (int)'A' && mlettre <= (int)'Z'){  // sans majuscule
-            mlettre -= (int)'A' + 1;
+            mlettre -= ((int)'A' - 1);
             return  mlettre;
         }
         else {
@@ -125,9 +125,17 @@ public class Convertisseur {
                 case '-':
                     mlettre = 42;
                     return mlettre;
-                case ' ':
+                case 'ç':
                     mlettre = 43;
                     return mlettre;
+                case 'ö':
+                    mlettre = 44;
+                    return mlettre;
+                case 'ó':
+                    mlettre = 45;
+                    return mlettre;
+
+
 
                 // AUTRE LANGUE:
 
@@ -151,13 +159,16 @@ public class Convertisseur {
 
     public char getChar (int mlettre){
         char lettre;
-        if (mlettre <= 26) { //lettre classique
-            mlettre += (int) 'a';
+        if (mlettre <= 26 && mlettre !=0) { //lettre classique
+            mlettre += (int) 'a'-1;
             lettre = (char) mlettre;
             return lettre;
         }
         else {
             switch (mlettre) {
+                case 0:
+                    lettre = 'ø';
+                    return lettre;
                 // FRANCAIS
                 case 39: //'à':
                     lettre = 'à';
@@ -208,8 +219,15 @@ public class Convertisseur {
                     lettre = '-';
                     return lettre;
                 case 43:
-                    lettre = ' ';
+                    lettre = 'ç';
                     return lettre;
+                case 44:
+                    lettre = 'ö';
+                    return lettre;
+                case 45:
+                    lettre = 'ó';
+                    return lettre;
+
 
                 // AUTRE LANGUE:
 

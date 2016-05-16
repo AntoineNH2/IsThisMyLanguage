@@ -123,7 +123,7 @@ public class MotAlea1 {
         // nextInt is normally exclusive of the top value,
         // so add 1 to make it inclusive
         // int randomNum = rand.nextInt((max - min) + 1) + min;
-        int max = 14;
+        int max = 10;
         int min = 5;
         tailleMot = rand.nextInt((max - min) + 1) + min;
 
@@ -135,12 +135,13 @@ public class MotAlea1 {
 
         int nb;
         for (nb=0;nb<tailleMot;nb++) {
-            cSuivant = probaLettre.getSuivanteSimple(matrice, iPrecedente, iPrecedente_2);
+            cSuivant = probaLettre.getSuivanteSimple(matrice, iPrecedente_2, iPrecedente);
             iSuivant = convertisseur.getInt(cSuivant);
 
             iPrecedente_2 = iPrecedente;
             iPrecedente = iSuivant;
             motAlea+=cSuivant;
+         //   Log.v("MotAlea1: ", "mot en création: " + motAlea);
         }
         return motAlea;
     }
