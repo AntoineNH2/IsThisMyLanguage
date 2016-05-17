@@ -45,7 +45,6 @@ public class ProbaLettre {
 
         // pour le test
         Log.v("ProbaLettre", "dico simple");
-        filename = "mots.txt";
         try {
             Log.v("ProbaLettre LoadDico","récupère la matrice de "+filename);
             mArray = ReadMatrixTxt2.readDico(filename, mContext);

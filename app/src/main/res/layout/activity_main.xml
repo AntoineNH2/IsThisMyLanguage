@@ -15,6 +15,7 @@
         android:text="Clique sur le bouton :) !"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/MotAleaTxtView"
+        android:layout_marginTop="86dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -26,42 +27,24 @@
         android:layout_below="@+id/MotAleaTxtView"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aléatoire qui crash 1/5"
-        android:id="@+id/EraseButton"
-        android:layout_below="@+id/MatrixView"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Clique sur le bouton :) !"
-        android:id="@+id/MatrixView"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/BalanceBouton"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Clique sur le bouton :) !"
         android:id="@+id/methode3View"
-        android:layout_marginTop="82dp"
-        android:layout_below="@+id/EraseButton"
+        android:layout_above="@+id/methode3Button"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ca marche !! :)"
+        android:text="Invente un mot"
         android:id="@+id/methode3Button"
         android:nestedScrollingEnabled="false"
-        android:layout_below="@+id/methode3View"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/loadButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="96dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

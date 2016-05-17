@@ -78,23 +78,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        BoutonEfface = (Button) findViewById(R.id.EraseButton);
-        BoutonEfface.setEnabled(false);
-        BoutonEfface.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // normalement matrices loadées !
-
-                motCree = motAlea1.methode2(mArray);
-                //Log.v("Mot aléatoire ", motAlea);
-
-
-                TextAlea = (TextView) findViewById(R.id.MatrixView);
-                TextAlea.setText(motCree);
-                ////Log.v("taille mot =",String.valueOf(tailleMot));
-            }
-        });
-
         Bouton3 = (Button) findViewById(R.id.methode3Button);
         Bouton3.setEnabled(false);
         Bouton3.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 matSimple = probaLettre.LoadSimple("fr", MainActivity.this);
 
                 BoutonAlea.setEnabled(isAppuyer);
-             //   BoutonEfface.setEnabled(isAppuyer);
                 Bouton3.setEnabled(isAppuyer);
                 BoutonLoad.setEnabled(false);
                 Log.v("MainActivity: ", "LOADING FINI !!");
