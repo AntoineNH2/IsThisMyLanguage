@@ -134,6 +134,7 @@ public class Convertisseur {
                 case 'ó':
                     mlettre = 45;
                     return mlettre;
+                // NUMERO 46 FIN !!
 
 
 
@@ -166,9 +167,6 @@ public class Convertisseur {
         }
         else {
             switch (mlettre) {
-                case 0:
-                    lettre = 'ø';
-                    return lettre;
                 // FRANCAIS
                 case 39: //'à':
                     lettre = 'à';
@@ -228,11 +226,15 @@ public class Convertisseur {
                     lettre = 'ó';
                     return lettre;
 
+                // NUMERO 46 FIN !!
+
 
                 // AUTRE LANGUE:
 
                 default:
-                    Log.v("Convertisseur", "ASCII PAS PRISE EN COMPTE: " + mlettre);
+                    if (mlettre != 0) {
+                        Log.v("Convertisseur", "ASCII PAS PRISE EN COMPTE: " + mlettre);
+                    }
                     return 0;
             }
         }

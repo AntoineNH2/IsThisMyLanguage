@@ -121,7 +121,7 @@ public class MotAlea1 {
     }
 
     public String methode5 (short[][][] matrice){
-        motAlea="";
+
         ProbaLettre probaLettre = new ProbaLettre();
         Convertisseur convertisseur = new Convertisseur();
 
@@ -129,9 +129,7 @@ public class MotAlea1 {
         // nextInt is normally exclusive of the top value,
         // so add 1 to make it inclusive
         // int randomNum = rand.nextInt((max - min) + 1) + min;
-        int max = 10;
-        int min = 5;
-        tailleMot = rand.nextInt((max - min) + 1) + min;
+
 
         int iPrecedente=0;
         int iPrecedente_2=0;
@@ -139,16 +137,26 @@ public class MotAlea1 {
         char cSuivant;
 
 
-        int nb;
-        for (nb=0;nb<tailleMot;nb++) {
-            cSuivant = probaLettre.getSuivanteSimple(matrice, iPrecedente_2, iPrecedente);
-            iSuivant = convertisseur.getInt(cSuivant);
+        int nb=0;
+        iSuivant = probaLettre.getSuivanteSimple(matrice, iPrecedente_2, iPrecedente);
+        do {
+            nb ++;
+            motAlea="";
+            iSuivant = probaLettre.getSuivanteSimple(matrice, iPrecedente_2, iPrecedente);
+            while (iSuivant != 46) {
+                // for (nb=0;nb<tailleMot;nb++) {
 
-            iPrecedente_2 = iPrecedente;
-            iPrecedente = iSuivant;
-            motAlea+=cSuivant;
-         //   Log.v("MotAlea1: ", "mot en création: " + motAlea);
-        }
+                cSuivant = convertisseur.getChar(iSuivant);
+                iPrecedente_2 = iPrecedente;
+                iPrecedente = iSuivant;
+                motAlea += cSuivant;
+
+                iSuivant = probaLettre.getSuivanteSimple(matrice, iPrecedente_2, iPrecedente);
+                //   Log.v("MotAlea1: ", "mot en création: " + motAlea);
+            }
+        } while ((motAlea.length() > 20 || motAlea.length() < 3));
+       // Log.v("MotAlea1: ", "nb fois: " + nb);
+
         return motAlea;
     }
 

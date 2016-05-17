@@ -226,7 +226,7 @@ public class ProbaLettre {
     }
 
 
-    public char getSuivanteSimple (short[][][] matrice, int iPrec2, int iPrec){
+    public int getSuivanteSimple (short[][][] matrice, int iPrec2, int iPrec){
         char lettre, cPrec2, cPrec;
         int iSuiv;
         Convertisseur convertisseur = new Convertisseur();
@@ -247,11 +247,11 @@ public class ProbaLettre {
 
         iSuiv = alea_perso(loi);
 
-        lettre = convertisseur.getChar(iSuiv);
+       // lettre = convertisseur.getChar(iSuiv);
     //    Log.v("ProbaLettre", "cSuiv= " + lettre);
 
 
-        return lettre;
+        return iSuiv;
     }
 
     private int alea_perso(int loi[]){

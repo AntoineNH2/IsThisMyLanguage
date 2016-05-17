@@ -343,6 +343,8 @@ public class ReadMatrixTxt2 {
 
                     }
                     nMot +=1;
+                    matrice[iPrec2][iPrec][46]++;   // FIN DU MOT !
+                    matrice_sum[iPrec2][iPrec]++;   // FIN DU MOT !
                 }
                 Log.v("ReadMatrixTxt2_readDico","Il y a eu "+String.valueOf(nMot) + " pris en compte");
 
