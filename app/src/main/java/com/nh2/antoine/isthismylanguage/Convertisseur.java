@@ -131,10 +131,41 @@ public class Convertisseur {
                 case 'ö':
                     mlettre = 44;
                     return mlettre;
+                case 'Ö':
+                    return 44;
                 case 'ó':
                     mlettre = 45;
                     return mlettre;
                 // NUMERO 46 FIN !!
+
+                case 'á':
+                    return 47;
+                case 'ä':
+                    return 48;
+                case 'Ä':
+                    return 48;
+                case 'ñ':
+                    return 49;
+                case 'Å':
+                    return 50;
+                case 'å':
+                    return 50;
+                case 'ã':
+                    return 51;
+                case 'ø':
+                    return 52;
+                case 'ń':
+                    return 53;
+                case 'ś':
+                    return 54;
+                case 'š':
+                    return 55;
+
+
+
+
+
+
 
 
 
@@ -227,6 +258,25 @@ public class Convertisseur {
                     return lettre;
 
                 // NUMERO 46 FIN !!
+
+                case 47:
+                    return 'á';
+                case 48:
+                    return 'ä';
+                case 49:
+                    return 'ñ';
+                case 50:
+                    return 'å';
+                case 51:
+                    return 'ã';
+                case 52:
+                    return 'ø';
+                case 53:
+                    return 'ń';
+                case 54:
+                    return 'ś';
+                case 55:
+                    return 'š';
 
 
                 // AUTRE LANGUE:

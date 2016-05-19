@@ -308,7 +308,7 @@ public class ReadMatrixTxt2 {
                 Log.v("ReadMatrixTxt2_readDico"," lecture en cours...");
                 int nMot=0;
                 while ((line=input.readLine()) != null) {
-                    //    Log.v("ReadDico", "nMot = " + nMot);
+                //    Log.v("ReadDico", "nMot = " + nMot);
                     // récupère le mot !
                     int i=0;
                     int iPrec=0, iPrec2=0, iSuiv=0;
@@ -332,6 +332,9 @@ public class ReadMatrixTxt2 {
                         iPrec2 = iPrec;
                         iPrec = iSuiv;
                         i++;
+                        if (i == line.length()){
+                            break;
+                        }
                         cSuiv = line.charAt(i);
                         asciiSuiv = (int) cSuiv;
                         if (asciiSuiv >64) {

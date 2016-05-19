@@ -15,44 +15,64 @@
         android:text="Clique sur le bouton :) !"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/MotAleaTxtView"
-        android:layout_marginTop="86dp"
+        android:layout_marginTop="49dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aléatoire complet"
-        android:id="@+id/BalanceBouton"
+        android:text="Random"
+        android:id="@+id/buttonRAND"
+        android:layout_marginTop="69dp"
         android:layout_below="@+id/MotAleaTxtView"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Clique sur le bouton :) !"
-        android:id="@+id/methode3View"
-        android:layout_above="@+id/methode3Button"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Invente un mot"
-        android:id="@+id/methode3Button"
+        android:text="Francais"
+        android:id="@+id/buttonFR"
         android:nestedScrollingEnabled="false"
-        android:layout_above="@+id/loadButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="96dp" />
+        android:layout_alignTop="@+id/buttonRAND"
+        android:layout_centerHorizontal="true" />
 
     <Button
-        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Loader les matrices !"
-        android:id="@+id/loadButton"
-        android:layout_alignParentBottom="true"
+        android:text="English"
+        android:id="@+id/buttonEN"
+        android:layout_alignTop="@+id/buttonFR"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Spanish"
+        android:id="@+id/buttonES"
+        android:layout_alignBaseline="@+id/buttonIT"
+        android:layout_alignBottom="@+id/buttonIT"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Italian"
+        android:id="@+id/buttonIT"
+        android:layout_marginTop="70dp"
+        android:layout_below="@+id/buttonFR"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sweden"
+        android:id="@+id/buttonSE"
+        android:layout_alignTop="@+id/buttonIT"
+        android:layout_alignRight="@+id/buttonEN"
+        android:layout_alignEnd="@+id/buttonEN" />
 
 </RelativeLayout>

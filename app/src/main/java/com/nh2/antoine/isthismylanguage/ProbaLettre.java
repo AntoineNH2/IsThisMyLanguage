@@ -242,7 +242,7 @@ public class ProbaLettre {
 
         cPrec2 = convertisseur.getChar(iPrec2);
         cPrec = convertisseur.getChar(iPrec);
-    //    Log.v("Probalettre Loi: ", cPrec2 + " puis " + cPrec + " " + sLoi);
+      //  Log.v("Probalettre Loi: ", cPrec2 + " puis " + cPrec + " " + sLoi);
 
         iSuiv = alea_perso(loi);
 

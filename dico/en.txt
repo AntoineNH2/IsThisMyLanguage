@@ -1,7 +1,3 @@
-56507
-à
-3GPP/1
-AAA
 Aachen/1
 aardvark/2	1
 Aarhus/1
