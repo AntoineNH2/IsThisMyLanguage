@@ -12,27 +12,29 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clique sur le bouton :) !"
+        android:text="Choose a language to create a word "
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/MotAleaTxtView"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="39dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Random"
+        android:text="Random letters"
         android:id="@+id/buttonRAND"
         android:layout_marginTop="69dp"
         android:layout_below="@+id/MotAleaTxtView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/buttonES"
+        android:layout_alignEnd="@+id/buttonES" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Francais"
+        android:text="French"
         android:id="@+id/buttonFR"
         android:nestedScrollingEnabled="false"
         android:layout_alignTop="@+id/buttonRAND"
@@ -52,8 +54,7 @@
         android:layout_height="wrap_content"
         android:text="Spanish"
         android:id="@+id/buttonES"
-        android:layout_alignBaseline="@+id/buttonIT"
-        android:layout_alignBottom="@+id/buttonIT"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -62,9 +63,9 @@
         android:layout_height="wrap_content"
         android:text="Italian"
         android:id="@+id/buttonIT"
-        android:layout_marginTop="70dp"
-        android:layout_below="@+id/buttonFR"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/buttonES"
+        android:layout_alignLeft="@+id/buttonFR"
+        android:layout_alignStart="@+id/buttonFR" />
 
     <Button
         android:layout_width="wrap_content"
@@ -74,5 +75,59 @@
         android:layout_alignTop="@+id/buttonIT"
         android:layout_alignRight="@+id/buttonEN"
         android:layout_alignEnd="@+id/buttonEN" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Random language"
+        android:id="@+id/buttonLangue"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hungarian"
+        android:id="@+id/buttonHU"
+        android:layout_below="@+id/buttonES"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="German"
+        android:id="@+id/buttonGE"
+        android:layout_alignTop="@+id/buttonHU"
+        android:layout_alignLeft="@+id/buttonIT"
+        android:layout_alignStart="@+id/buttonIT" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Portuguese"
+        android:id="@+id/buttonPT"
+        android:layout_alignTop="@+id/buttonNN"
+        android:layout_alignRight="@+id/buttonEL"
+        android:layout_alignEnd="@+id/buttonEL" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Norwegian"
+        android:id="@+id/buttonNN"
+        android:layout_above="@+id/buttonLangue"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Greek"
+        android:id="@+id/buttonEL"
+        android:layout_alignTop="@+id/buttonGE"
+        android:layout_toRightOf="@+id/buttonLangue"
+        android:layout_toEndOf="@+id/buttonLangue" />
 
 </RelativeLayout>

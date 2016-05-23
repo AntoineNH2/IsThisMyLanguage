@@ -138,7 +138,6 @@ public class MotAlea1 {
 
 
         int nb=0;
-        iSuivant = probaLettre.getSuivanteSimple(matrice, iPrecedente_2, iPrecedente);
         do {
             nb ++;
             motAlea="";

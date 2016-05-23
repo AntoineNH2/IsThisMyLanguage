@@ -8,14 +8,11 @@ import android.support.v7.app.AppCompatActivity;
         import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView TextAlea = null;
-
-
-    private Button BoutonLoad = null;
-
 
     private Button BoutonAlea = null;
     private Button BoutonFR = null;
@@ -25,29 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button BoutonHU = null;
     private Button BoutonSE = null;
 
-
-
-
-    private int tailleMot = 0;
-    private char lStart;
-    private char lSuivant;
-    private char lPrecedente;
     private String motCree;
-
-    private int lettreInt = 0;
-    private char lettreString = 'a';
-
-    private String filename;
-
-    private int[][] matrice;
-    private StringBuffer MatrStr;
-
-    private ArrayList<int[][]> mArray;
-    private ArrayList<int[][]> mArray3D;
-    private int[][][] iCount;
-    private int[][][] matrice3D;
-    private boolean isAppuyer = false;
-
 
     private short[][][] matSimple;
 
@@ -58,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
     private int appHU = 0;
     private int appSE =0;
 
+    private ArrayList arrayLangue = new ArrayList();
+    private boolean isNew;
+
+    private String langue;
+
 
 
     @Override
@@ -67,8 +47,31 @@ public class MainActivity extends AppCompatActivity {
 
         final ProbaLettre probaLettre = new ProbaLettre();
         final MotAlea1 motAlea1 = new MotAlea1();
+        final NewLanguage newLanguage = new NewLanguage();
 
+        // Les langues utilisées:
 
+        arrayLangue.add("fr");  //francais
+        arrayLangue.add(0);
+        arrayLangue.add("en");//english
+        arrayLangue.add(0);
+        arrayLangue.add("es");//spanish
+        arrayLangue.add(0);
+        arrayLangue.add("it");//italian
+        arrayLangue.add(0);
+        arrayLangue.add("hu");//hungarian
+        arrayLangue.add(0);
+        arrayLangue.add("se");//sweden
+        arrayLangue.add(0);
+        arrayLangue.add("et");//portuguese
+        arrayLangue.add(0);
+        arrayLangue.add("nn");//norwegian
+        arrayLangue.add(0);
+        arrayLangue.add("ge");//german
+        arrayLangue.add(0);
+        arrayLangue.add("pt");//greek
+        arrayLangue.add(0);
+        arrayLangue.add(1); //pour l'initialiser
 
 
         BoutonAlea = (Button) findViewById(R.id.buttonRAND);
@@ -97,18 +100,13 @@ public class MainActivity extends AppCompatActivity {
         BoutonFR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (appFR == 0){
-                    appFR ++;
-                    appEN =0;
-                    appES =0;
-                    appHU = 0;
-                    appIT = 0;
-                    appSE =0;
+                langue = "fr";
 
-
-                    matSimple = probaLettre.LoadSimple("fr", MainActivity.this);
+                isNew = newLanguage.IsNewLangue(arrayLangue, langue);
+                if (isNew == false){
+                    arrayLangue = newLanguage.NewLanguage(arrayLangue,langue);
+                    matSimple = probaLettre.LoadSimple(langue, MainActivity.this);
                 }
-              //  motCree = motAlea1.methode4(mArray3D);
                 motCree = motAlea1.methode5(matSimple);
                 TextAlea = (TextView) findViewById(R.id.MotAleaTxtView);
                 TextAlea.setText(motCree);
@@ -121,15 +119,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //  motCree = motAlea1.methode4(mArray3D);
-                if (appEN == 0){
-                    appEN ++;
-                    appFR =0;
-                    appES =0;
-                    appHU = 0;
-                    appIT = 0;
-                    appSE =0;
+                langue = "en";
 
-                    matSimple = probaLettre.LoadSimple("en", MainActivity.this);
+                isNew = newLanguage.IsNewLangue(arrayLangue, langue);
+                if (isNew == false){
+                    arrayLangue = newLanguage.NewLanguage(arrayLangue,langue);
+                    matSimple = probaLettre.LoadSimple(langue, MainActivity.this);
                 }
                 //  motCree = motAlea1.methode4(mArray3D);
                 motCree = motAlea1.methode5(matSimple);
@@ -144,15 +139,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //  motCree = motAlea1.methode4(mArray3D);
-                if (appES == 0){
-                    appFR =0;
-                    appEN =0;
-                    appES ++;
-                    appHU = 0;
-                    appIT = 0;
-                    appSE =0;
+                langue = "es";
 
-                    matSimple = probaLettre.LoadSimple("es", MainActivity.this);
+                isNew = newLanguage.IsNewLangue(arrayLangue, langue);
+                if (isNew == false){
+                    arrayLangue = newLanguage.NewLanguage(arrayLangue,langue);
+                    matSimple = probaLettre.LoadSimple(langue, MainActivity.this);
                 }
                 //  motCree = motAlea1.methode4(mArray3D);
                 motCree = motAlea1.methode5(matSimple);
@@ -166,15 +158,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //  motCree = motAlea1.methode4(mArray3D);
-                if (appIT == 0){
-                    appFR =0;
-                    appEN =0;
-                    appIT ++;
-                    appHU = 0;
-                    appES = 0;
-                    appSE =0;
+                langue = "it";
 
-                    matSimple = probaLettre.LoadSimple("it", MainActivity.this);
+                isNew = newLanguage.IsNewLangue(arrayLangue, langue);
+                if (isNew == false){
+                    arrayLangue = newLanguage.NewLanguage(arrayLangue,langue);
+                    matSimple = probaLettre.LoadSimple(langue, MainActivity.this);
                 }
                 //  motCree = motAlea1.methode4(mArray3D);
                 motCree = motAlea1.methode5(matSimple);
@@ -187,15 +176,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //  motCree = motAlea1.methode4(mArray3D);
-                if (appSE == 0){
-                    appFR =0;
-                    appEN =0;
-                    appES =0;
-                    appHU = 0;
-                    appIT = 0;
-                    appSE ++;
+                langue = "se";
 
-                    matSimple = probaLettre.LoadSimple("se", MainActivity.this);
+                isNew = newLanguage.IsNewLangue(arrayLangue, langue);
+                if (isNew == false){
+                    arrayLangue = newLanguage.NewLanguage(arrayLangue,langue);
+                    matSimple = probaLettre.LoadSimple(langue, MainActivity.this);
                 }
                 //  motCree = motAlea1.methode4(mArray3D);
                 motCree = motAlea1.methode5(matSimple);
@@ -203,31 +189,5 @@ public class MainActivity extends AppCompatActivity {
                 TextAlea.setText(motCree);
             }
         });
-
-
-/*
-        BoutonLoad = (Button) findViewById(R.id.loadButton);
-        BoutonLoad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.v("MainActivity: ", "DEBUT DU LOADING");
-                isAppuyer = true;
-             //   mArray = probaLettre.LoadMatrice("fr", MainActivity.this);
-                //    //Log.v("Initialisation", "matrices loadées");
-                //   iCount = probaLettre.LoadBinaire("fr", MainActivity.this);
-             //   mArray3D = probaLettre.LoadDico("fr", MainActivity.this);
-
-                matSimpleFR = probaLettre.LoadSimple("fr", MainActivity.this);
-                matSimpleAutre = probaLettre.LoadSimple("it", MainActivity.this);
-
-                BoutonAlea.setEnabled(isAppuyer);
-                Bouton3.setEnabled(isAppuyer);
-                Bouton4.setEnabled((isAppuyer));
-                BoutonLoad.setEnabled(false);
-                Log.v("MainActivity: ", "LOADING FINI !!");
-            }
-        });
-*/
-
     }
 }

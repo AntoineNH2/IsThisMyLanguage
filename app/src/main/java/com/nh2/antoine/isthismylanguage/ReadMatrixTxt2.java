@@ -23,8 +23,128 @@ import java.util.List;
  * Created by antoineNH2 on 26/04/16.
  */
 public class ReadMatrixTxt2 {
+    // CELUI QUI MARCHE:
+    public static short[][][] readDicoSimple (String filename, Context context) throws FileNotFoundException{
 
 
+        Convertisseur convertisseur = new Convertisseur();
+
+        int long_matr = 65; // MA MATRICE
+
+        Context mContext = context;
+        short[][][] matrice = new short[long_matr][long_matr][long_matr];
+
+        //Scanner input = new Scanner(new File(filename));
+        AssetManager assetManager = mContext.getAssets();
+        BufferedReader input = null;
+
+
+        int[][] matrice_sum = new int[long_matr][long_matr];    // mémorise la somme des probabilités
+
+
+        try {
+            input = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
+            Log.v("ReadMatrixTxt2_readDico", "récupère le ficher " + filename);
+            // pre-read in the number of rows/columns
+            try {
+                String line;
+                // récupère la matrice entière:
+                Log.v("ReadMatrixTxt2_readDico"," lecture en cours...");
+                int nMot=0;
+                while ((line=input.readLine()) != null) {
+                    //    Log.v("ReadDico", "nMot = " + nMot);
+                    // récupère le mot !
+                    int i=0;
+                    int iPrec=0, iPrec2=0, iSuiv=0;
+                    int asciiSuiv;
+                    char cSuiv;
+                    cSuiv = line.charAt(i);
+                    //    Log.v("ReadMatrixTxt2_Read Simple", "cSuiv: " + cSuiv);
+                    iSuiv = convertisseur.getInt(cSuiv);
+                    //    Log.v("ReadMatrixTxt2_Read Simple", "iSuiv: " + iSuiv);
+                    asciiSuiv = (int) cSuiv;
+                    //    Log.v("ReadMatrixTxt2_Read Simple", "ASCIISuiv: " + asciiSuiv);
+                    while(i<line.length() && asciiSuiv >64){ // fin des mots => sortie
+
+                        matrice[iPrec2][iPrec][iSuiv] ++;
+                        matrice_sum [iPrec2][iPrec] ++;
+
+                        //   if (nMot < 20 || nMot > 75350) {
+                        //       Log.v("ReadMatrixTxt2_readDico", "APRES matrice [" + iPrec2 + "] [" + iPrec + "] [" + iSuiv + "] = " + matrice[iPrec][iSuiv]);
+                        //   }
+
+                        iPrec2 = iPrec;
+                        iPrec = iSuiv;
+                        i++;
+                        if (i == line.length()){
+                            break;
+                        }
+                        cSuiv = line.charAt(i);
+                        asciiSuiv = (int) cSuiv;
+                        if (asciiSuiv >64) {
+                            iSuiv = convertisseur.getInt(cSuiv);
+                        }
+                        //  Log.v("ReadMatrixTxt2_Read Simple", "cSuiv: " + cSuiv);
+                        //  Log.v("ReadMatrixTxt2_Read Simple", "iSuiv: " + iSuiv);
+                        //  Log.v("ReadMatrixTxt2_Read Simple", "ASCIISuiv: " + asciiSuiv);
+
+                    }
+                    nMot +=1;
+                    matrice[iPrec2][iPrec][46]++;   // FIN DU MOT !
+                    matrice_sum[iPrec2][iPrec]++;   // FIN DU MOT !
+                }
+                Log.v("ReadMatrixTxt2_readDico","Il y a eu "+String.valueOf(nMot) + " pris en compte");
+
+
+
+                // normalisation
+                Log.v("ReadMatrixTxt2_readDico","Normalisation");
+                int num = 0, sup = 0;
+                float temp;
+                int iPrec2, iPrec, iSuiv;
+                for (iPrec2=0;iPrec2<long_matr; iPrec2++){
+                    for(iPrec=0;iPrec<long_matr; iPrec++){
+                        if (matrice_sum[iPrec2][iPrec] != 0) {
+
+                            //   Log.v("ReadMatrixTxt2_readDico", "matrice_sum [" + String.valueOf(iPrec2)+ "] [" + String.valueOf(iPrec) +"] =" + String.valueOf(matrice_sum[iPrec2][iPrec]));
+                            for (iSuiv = 0; iSuiv < long_matr; iSuiv++) {
+                                num += 1;
+                                temp = ((float) matrice[iPrec2][iPrec][iSuiv]) / ((float) matrice_sum[iPrec2][iPrec]);
+                               /* if (temp >1) {
+                                    sup +=1;
+                                    Log.v("ReadMatrixTxt2_readDico", "avant norm matrice [" + iPrec2 + "] [" + iPrec + "] [" + iSuiv + "] = " + String.valueOf(matrice[iPrec][iSuiv]));
+                                    Log.v("ReadMatrixTxt2_readDico", "normalise par: " + String.valueOf(matrice_sum[iPrec2][iPrec]));
+
+                                    Log.v("ReadMatrixTxt2_readDico", "après norm matrice [" +String.valueOf(iPrec2)+ "] [" + String.valueOf(iPrec) + "] [" + String.valueOf(iSuiv) +"] ="  + String.valueOf(temp) +"\n");
+
+                                }
+                                 */
+                                matrice[iPrec2][iPrec][iSuiv] = (short) ((float)100 * temp);
+                            }
+                        }
+                    }
+                }
+                Log.v("ReadMatrixTxt2_readDico", "fait normalisation " + String.valueOf(num) + " fois");//, dont " + sup + " mauvaise...");
+
+
+                //Log.v("class",String.valueOf(rows));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                input.close();
+            } catch (IOException e) {
+                throw new RuntimeException("Error while closing input stream: " + e);
+            }
+        }
+        return matrice;
+    }
+
+
+    // CEUX QUI NE MARCHENT PAS :
     public static int[][] read2(String filename, Context context) throws FileNotFoundException {
 
         Context mContext = context;
@@ -89,7 +209,6 @@ public class ReadMatrixTxt2 {
         }
         return matrice;
     }
-
 
     public static int[][][] readBin(String filename, Context context) throws FileNotFoundException {
 
@@ -280,122 +399,4 @@ public class ReadMatrixTxt2 {
         return mArray;
     }
 
-    public static short[][][] readDicoSimple (String filename, Context context) throws FileNotFoundException{
-
-
-        Convertisseur convertisseur = new Convertisseur();
-
-        int long_matr = 65; // MA MATRICE
-
-        Context mContext = context;
-        short[][][] matrice = new short[long_matr][long_matr][long_matr];
-
-        //Scanner input = new Scanner(new File(filename));
-        AssetManager assetManager = mContext.getAssets();
-        BufferedReader input = null;
-
-
-        int[][] matrice_sum = new int[long_matr][long_matr];    // mémorise la somme des probabilités
-
-
-        try {
-            input = new BufferedReader(new InputStreamReader(assetManager.open(filename)));
-            Log.v("ReadMatrixTxt2_readDico", "récupère le ficher " + filename);
-            // pre-read in the number of rows/columns
-            try {
-                String line;
-                // récupère la matrice entière:
-                Log.v("ReadMatrixTxt2_readDico"," lecture en cours...");
-                int nMot=0;
-                while ((line=input.readLine()) != null) {
-                //    Log.v("ReadDico", "nMot = " + nMot);
-                    // récupère le mot !
-                    int i=0;
-                    int iPrec=0, iPrec2=0, iSuiv=0;
-                    int asciiSuiv;
-                    char cSuiv;
-                    cSuiv = line.charAt(i);
-                //    Log.v("ReadMatrixTxt2_Read Simple", "cSuiv: " + cSuiv);
-                    iSuiv = convertisseur.getInt(cSuiv);
-                //    Log.v("ReadMatrixTxt2_Read Simple", "iSuiv: " + iSuiv);
-                    asciiSuiv = (int) cSuiv;
-                //    Log.v("ReadMatrixTxt2_Read Simple", "ASCIISuiv: " + asciiSuiv);
-                    while(i<line.length() && asciiSuiv >64){ // fin des mots => sortie
-
-                        matrice[iPrec2][iPrec][iSuiv] ++;
-                        matrice_sum [iPrec2][iPrec] ++;
-
-                        //   if (nMot < 20 || nMot > 75350) {
-                        //       Log.v("ReadMatrixTxt2_readDico", "APRES matrice [" + iPrec2 + "] [" + iPrec + "] [" + iSuiv + "] = " + matrice[iPrec][iSuiv]);
-                        //   }
-
-                        iPrec2 = iPrec;
-                        iPrec = iSuiv;
-                        i++;
-                        if (i == line.length()){
-                            break;
-                        }
-                        cSuiv = line.charAt(i);
-                        asciiSuiv = (int) cSuiv;
-                        if (asciiSuiv >64) {
-                            iSuiv = convertisseur.getInt(cSuiv);
-                        }
-                        //  Log.v("ReadMatrixTxt2_Read Simple", "cSuiv: " + cSuiv);
-                      //  Log.v("ReadMatrixTxt2_Read Simple", "iSuiv: " + iSuiv);
-                      //  Log.v("ReadMatrixTxt2_Read Simple", "ASCIISuiv: " + asciiSuiv);
-
-                    }
-                    nMot +=1;
-                    matrice[iPrec2][iPrec][46]++;   // FIN DU MOT !
-                    matrice_sum[iPrec2][iPrec]++;   // FIN DU MOT !
-                }
-                Log.v("ReadMatrixTxt2_readDico","Il y a eu "+String.valueOf(nMot) + " pris en compte");
-
-
-
-                // normalisation
-                Log.v("ReadMatrixTxt2_readDico","Normalisation");
-                int num = 0, sup = 0;
-                float temp;
-                int iPrec2, iPrec, iSuiv;
-                for (iPrec2=0;iPrec2<long_matr; iPrec2++){
-                    for(iPrec=0;iPrec<long_matr; iPrec++){
-                        if (matrice_sum[iPrec2][iPrec] != 0) {
-
-                            //   Log.v("ReadMatrixTxt2_readDico", "matrice_sum [" + String.valueOf(iPrec2)+ "] [" + String.valueOf(iPrec) +"] =" + String.valueOf(matrice_sum[iPrec2][iPrec]));
-                            for (iSuiv = 0; iSuiv < long_matr; iSuiv++) {
-                                num += 1;
-                                temp = ((float) matrice[iPrec2][iPrec][iSuiv]) / ((float) matrice_sum[iPrec2][iPrec]);
-                               /* if (temp >1) {
-                                    sup +=1;
-                                    Log.v("ReadMatrixTxt2_readDico", "avant norm matrice [" + iPrec2 + "] [" + iPrec + "] [" + iSuiv + "] = " + String.valueOf(matrice[iPrec][iSuiv]));
-                                    Log.v("ReadMatrixTxt2_readDico", "normalise par: " + String.valueOf(matrice_sum[iPrec2][iPrec]));
-
-                                    Log.v("ReadMatrixTxt2_readDico", "après norm matrice [" +String.valueOf(iPrec2)+ "] [" + String.valueOf(iPrec) + "] [" + String.valueOf(iSuiv) +"] ="  + String.valueOf(temp) +"\n");
-
-                                }
-                                 */
-                                matrice[iPrec2][iPrec][iSuiv] = (short) ((float)100 * temp);
-                            }
-                        }
-                    }
-                }
-                Log.v("ReadMatrixTxt2_readDico", "fait normalisation " + String.valueOf(num) + " fois");//, dont " + sup + " mauvaise...");
-
-
-                //Log.v("class",String.valueOf(rows));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                input.close();
-            } catch (IOException e) {
-                throw new RuntimeException("Error while closing input stream: " + e);
-            }
-        }
-        return matrice;
-    }
 }
