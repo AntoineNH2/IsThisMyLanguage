@@ -8,19 +8,25 @@ import android.support.v7.app.AppCompatActivity;
         import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView TextAlea = null;
 
-    private Button BoutonAlea = null;
+    private Button BoutonAleaLettre = null;
     private Button BoutonFR = null;
     private Button BoutonEN = null;
     private Button BoutonES = null;
     private Button BoutonIT = null;
-    private Button BoutonHU = null;
     private Button BoutonSE = null;
+    private Button BoutonHU = null;
+    private Button BoutonEL = null;
+    private Button BoutonNN = null;
+    private Button BoutonGE= null;
+    private Button BoutonPT = null;
+    private Button BoutonAleaMot = null;
 
     private String motCree;
 
@@ -59,11 +65,11 @@ public class MainActivity extends AppCompatActivity {
         arrayLangue.add(0);
         arrayLangue.add("it");//italian
         arrayLangue.add(0);
-        arrayLangue.add("hu");//hungarian
-        arrayLangue.add(0);
         arrayLangue.add("se");//sweden
         arrayLangue.add(0);
-        arrayLangue.add("et");//portuguese
+        arrayLangue.add("hu");//hungarian
+        arrayLangue.add(0);
+        arrayLangue.add("el");//portuguese
         arrayLangue.add(0);
         arrayLangue.add("nn");//norwegian
         arrayLangue.add(0);
@@ -74,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
         arrayLangue.add(1); //pour l'initialiser
 
 
-        BoutonAlea = (Button) findViewById(R.id.buttonRAND);
+        BoutonAleaLettre = (Button) findViewById(R.id.buttonRAND);
 
-        BoutonAlea.setOnClickListener(new View.OnClickListener() {
+        BoutonAleaLettre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // ICI l'action
@@ -187,6 +193,122 @@ public class MainActivity extends AppCompatActivity {
                 motCree = motAlea1.methode5(matSimple);
                 TextAlea = (TextView) findViewById(R.id.MotAleaTxtView);
                 TextAlea.setText(motCree);
+            }
+        });
+
+
+        BoutonHU = (Button) findViewById(R.id.buttonHU);
+      //  BoutonHU.setEnabled(false);
+        BoutonHU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                langue = "hu";
+
+                isNew = newLanguage.IsNewLangue(arrayLangue, langue);
+                if (isNew == false){
+                    arrayLangue = newLanguage.NewLanguage(arrayLangue,langue);
+                    matSimple = probaLettre.LoadSimple(langue, MainActivity.this);
+                }
+                motCree = motAlea1.methode5(matSimple);
+                TextAlea = (TextView) findViewById(R.id.MotAleaTxtView);
+                TextAlea.setText(motCree);
+            }
+        });
+
+
+        BoutonEL = (Button) findViewById(R.id.buttonEL);
+        BoutonEL.setEnabled(false);
+        BoutonEL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                langue = "el";
+
+                isNew = newLanguage.IsNewLangue(arrayLangue, langue);
+                if (isNew == false){
+                    arrayLangue = newLanguage.NewLanguage(arrayLangue,langue);
+                    matSimple = probaLettre.LoadSimple(langue, MainActivity.this);
+                }
+                motCree = motAlea1.methode5(matSimple);
+                TextAlea = (TextView) findViewById(R.id.MotAleaTxtView);
+                TextAlea.setText(motCree);
+            }
+        });
+
+        BoutonNN = (Button) findViewById(R.id.buttonNN);
+        BoutonNN.setEnabled(false);
+        BoutonNN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                langue = "nn";
+
+                isNew = newLanguage.IsNewLangue(arrayLangue, langue);
+                if (isNew == false){
+                    arrayLangue = newLanguage.NewLanguage(arrayLangue,langue);
+                    matSimple = probaLettre.LoadSimple(langue, MainActivity.this);
+                }
+                motCree = motAlea1.methode5(matSimple);
+                TextAlea = (TextView) findViewById(R.id.MotAleaTxtView);
+                TextAlea.setText(motCree);
+            }
+        });
+
+
+        BoutonGE = (Button) findViewById(R.id.buttonGE);
+      //  BoutonGE.setEnabled(false);
+        BoutonGE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                langue = "ge";
+
+                isNew = newLanguage.IsNewLangue(arrayLangue, langue);
+                if (isNew == false){
+                    arrayLangue = newLanguage.NewLanguage(arrayLangue,langue);
+                    matSimple = probaLettre.LoadSimple(langue, MainActivity.this);
+                }
+                motCree = motAlea1.methode5(matSimple);
+                TextAlea = (TextView) findViewById(R.id.MotAleaTxtView);
+                TextAlea.setText(motCree);
+            }
+        });
+
+        BoutonPT = (Button) findViewById(R.id.buttonPT);
+        BoutonPT.setEnabled(false);
+        BoutonPT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                langue = "pt";
+
+                isNew = newLanguage.IsNewLangue(arrayLangue, langue);
+                if (isNew == false){
+                    arrayLangue = newLanguage.NewLanguage(arrayLangue,langue);
+                    matSimple = probaLettre.LoadSimple(langue, MainActivity.this);
+                }
+                motCree = motAlea1.methode5(matSimple);
+                TextAlea = (TextView) findViewById(R.id.MotAleaTxtView);
+                TextAlea.setText(motCree);
+            }
+        });
+
+        BoutonAleaMot = (Button) findViewById(R.id.buttonLangue);
+        BoutonAleaMot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int iLangueMin = 0;
+                int iLangueMax = 4;
+                Random rand = new Random();
+                int randomNum = rand.nextInt((iLangueMax - iLangueMin) + 1) + iLangueMin;
+                langue = (String) arrayLangue.get(randomNum*2);
+
+
+                isNew = newLanguage.IsNewLangue(arrayLangue, langue);
+                if (isNew == false){
+                    arrayLangue = newLanguage.NewLanguage(arrayLangue,langue);
+                    matSimple = probaLettre.LoadSimple(langue, MainActivity.this);
+                }
+                motCree = motAlea1.methode5(matSimple);
+                TextAlea = (TextView) findViewById(R.id.MotAleaTxtView);
+                TextAlea.setText(motCree);
+                Log.v("MainActivity", "langue = " + langue);
             }
         });
     }

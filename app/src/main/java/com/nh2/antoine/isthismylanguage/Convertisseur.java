@@ -160,6 +160,18 @@ public class Convertisseur {
                     return 54;
                 case 'š':
                     return 55;
+                case 'ő':
+                    return 56;
+                case 'ű':
+                    return 57;
+                case 'í':
+                    return 58;
+                case 'ú':
+                    return 59;
+                case 'ß':
+                    return 60;
+
+
 
 
 
@@ -277,7 +289,16 @@ public class Convertisseur {
                     return 'ś';
                 case 55:
                     return 'š';
-
+                case 56:
+                    return 'ő';
+                case 57:
+                    return 'ű';
+                case 58:
+                    return 'í';
+                case 59:
+                    return 'ú';
+                case 60:
+                    return 'ß';
 
                 // AUTRE LANGUE:
 

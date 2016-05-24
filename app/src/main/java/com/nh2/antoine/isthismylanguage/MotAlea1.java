@@ -140,6 +140,8 @@ public class MotAlea1 {
         int nb=0;
         do {
             nb ++;
+            iPrecedente=0;
+            iPrecedente_2=0;
             motAlea="";
             iSuivant = probaLettre.getSuivanteSimple(matrice, iPrecedente_2, iPrecedente);
             while (iSuivant != 46) {
@@ -150,10 +152,11 @@ public class MotAlea1 {
                 iPrecedente = iSuivant;
                 motAlea += cSuivant;
 
+
                 iSuivant = probaLettre.getSuivanteSimple(matrice, iPrecedente_2, iPrecedente);
-                //   Log.v("MotAlea1: ", "mot en création: " + motAlea);
+                Log.v("MotAlea1: ", "mot en création: " + motAlea);
             }
-        } while ((motAlea.length() > 20 || motAlea.length() < 5) && nb < 5);
+        } while ((motAlea.length() > 15 || motAlea.length() < 4) && nb < 5);
        // Log.v("MotAlea1: ", "nb fois: " + nb);
 
         return motAlea;
