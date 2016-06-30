@@ -156,7 +156,7 @@ public class MotAlea1 {
                 iSuivant = probaLettre.getSuivanteSimple(matrice, iPrecedente_2, iPrecedente);
                 Log.v("MotAlea1: ", "mot en création: " + motAlea);
             }
-        } while ((motAlea.length() > 15 || motAlea.length() < 4) && nb < 5);
+        } while ((motAlea.length() > 12 || motAlea.length() < 6) && nb < 5);
        // Log.v("MotAlea1: ", "nb fois: " + nb);
 
         return motAlea;

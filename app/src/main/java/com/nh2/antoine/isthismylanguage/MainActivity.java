@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         BoutonGE = (Button) findViewById(R.id.buttonGE);
-      //  BoutonGE.setEnabled(false);
+        BoutonGE.setEnabled(false);
         BoutonGE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
