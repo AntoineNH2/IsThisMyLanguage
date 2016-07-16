@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Cette fonction lit un fichier txt et le transforme en 2D-array
+ * Cette fonction lit un fichier txt et le transforme en 3D-array
  *
  * Created by antoineNH2 on 26/04/16.
  */
@@ -30,8 +30,8 @@ public class ReadMatrixTxt2 {
         Convertisseur convertisseur = new Convertisseur();
 
         int long_matr = 65; // MA MATRICE
-        int max_short = 32750;
-        int nNeg = 0;
+        short max_short = 32766;
+
 
         Context mContext = context;
         short[][][] matrice = new short[long_matr][long_matr][long_matr];
@@ -73,7 +73,8 @@ public class ReadMatrixTxt2 {
                     while(i<line.length() && asciiSuiv >64){ // fin des mots => sortie
 
                         matrice[iPrec2][iPrec][iSuiv] ++;
-                        matrice_sum [iPrec2][iPrec] ++;
+
+                      //  matrice_sum [iPrec2][iPrec] ++;
 
 
 
@@ -100,8 +101,9 @@ public class ReadMatrixTxt2 {
                     nMot +=1;
                     if (matrice[iPrec2][iPrec][iSuiv] < max_short) {
                         matrice[iPrec2][iPrec][46]++;   // FIN DU MOT !
+                      //  matrice_sum[iPrec2][iPrec]++;   // FIN DU MOT !
+
                     }
-                    matrice_sum[iPrec2][iPrec]++;   // FIN DU MOT !
                     if ( matrice[iPrec2][iPrec][iSuiv] < 0){
                         Log.v("ReadMatrixTxt2_readDico", "NEGATIF en: matrice[" + iPrec2 +"][" + iPrec+"][" + iSuiv + "] =" +matrice[iPrec2][iPrec][iSuiv]);
                     }
@@ -110,11 +112,28 @@ public class ReadMatrixTxt2 {
 
 
 
+                Log.v("ReadMatrixTxt2_readDico","matrice[5][14][46] = " + matrice[5][14][46]);
+
+                int iPrec2, iPrec, iSuiv;
+
+                // verif si négatif
+                for (iPrec2=0;iPrec2<long_matr; iPrec2++) {
+                    for (iPrec = 0; iPrec < long_matr; iPrec++) {
+                        for(iSuiv=0; iSuiv<long_matr; iSuiv++){
+                            if (matrice[iPrec2][iPrec][iSuiv] < 0) {
+                                matrice[iPrec2][iPrec][iSuiv] = max_short;
+                            }
+                            matrice_sum[iPrec2][iPrec]=+matrice[iPrec2][iPrec][iSuiv];
+                        }
+                    }
+                }
+
+
+
                 // normalisation
                 Log.v("ReadMatrixTxt2_readDico","Normalisation");
                 int num = 0, sup = 0;
                 float temp;
-                int iPrec2, iPrec, iSuiv;
                 for (iPrec2=0;iPrec2<long_matr; iPrec2++){
                     for(iPrec=0;iPrec<long_matr; iPrec++){
                         if (matrice_sum[iPrec2][iPrec] != 0) {
@@ -123,9 +142,7 @@ public class ReadMatrixTxt2 {
                          //   }
 
                             for (iSuiv = 0; iSuiv < long_matr; iSuiv++) {
-                                if ( matrice[iPrec2][iPrec][iSuiv] < 0){
-                                    Log.v("ReadMatrixTxt2_readDico", "1er NEGATIF en: matrice[" + iPrec2 +"][" + iPrec+"][" + iSuiv + "] =" +matrice[iPrec2][iPrec][iSuiv]);
-                                }
+
                                 num += 1;
                                 temp = ((float) matrice[iPrec2][iPrec][iSuiv]) / ((float) matrice_sum[iPrec2][iPrec]);
                                 if ( temp < 0) {
@@ -427,5 +444,7 @@ public class ReadMatrixTxt2 {
         }
         return mArray;
     }
+
+
 
 }
