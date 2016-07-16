@@ -30,6 +30,8 @@ public class ReadMatrixTxt2 {
         Convertisseur convertisseur = new Convertisseur();
 
         int long_matr = 65; // MA MATRICE
+        int max_short = 32750;
+        int nNeg = 0;
 
         Context mContext = context;
         short[][][] matrice = new short[long_matr][long_matr][long_matr];
@@ -40,6 +42,10 @@ public class ReadMatrixTxt2 {
 
 
         int[][] matrice_sum = new int[long_matr][long_matr];    // mémorise la somme des probabilités
+
+        float a,b,c;
+       // a = (float)
+
 
 
         try {
@@ -69,7 +75,9 @@ public class ReadMatrixTxt2 {
                         matrice[iPrec2][iPrec][iSuiv] ++;
                         matrice_sum [iPrec2][iPrec] ++;
 
-                        //   if (nMot < 20 || nMot > 75350) {
+
+
+                            //   if (nMot < 20 || nMot > 75350) {
                         //       Log.v("ReadMatrixTxt2_readDico", "APRES matrice [" + iPrec2 + "] [" + iPrec + "] [" + iSuiv + "] = " + matrice[iPrec][iSuiv]);
                         //   }
 
@@ -90,8 +98,13 @@ public class ReadMatrixTxt2 {
 
                     }
                     nMot +=1;
-                    matrice[iPrec2][iPrec][46]++;   // FIN DU MOT !
+                    if (matrice[iPrec2][iPrec][iSuiv] < max_short) {
+                        matrice[iPrec2][iPrec][46]++;   // FIN DU MOT !
+                    }
                     matrice_sum[iPrec2][iPrec]++;   // FIN DU MOT !
+                    if ( matrice[iPrec2][iPrec][iSuiv] < 0){
+                        Log.v("ReadMatrixTxt2_readDico", "NEGATIF en: matrice[" + iPrec2 +"][" + iPrec+"][" + iSuiv + "] =" +matrice[iPrec2][iPrec][iSuiv]);
+                    }
                 }
                 Log.v("ReadMatrixTxt2_readDico","Il y a eu "+String.valueOf(nMot) + " pris en compte");
 
@@ -105,11 +118,19 @@ public class ReadMatrixTxt2 {
                 for (iPrec2=0;iPrec2<long_matr; iPrec2++){
                     for(iPrec=0;iPrec<long_matr; iPrec++){
                         if (matrice_sum[iPrec2][iPrec] != 0) {
+                         //   if ( matrice_sum[iPrec2][iPrec] < 0) {
+                         //       Log.v("ReadMatrixTxt2_readDico", "matrice_sum[" + iPrec2 + "][" + iPrec + "] =" + matrice_sum[iPrec2][iPrec]);
+                         //   }
 
-                            //   Log.v("ReadMatrixTxt2_readDico", "matrice_sum [" + String.valueOf(iPrec2)+ "] [" + String.valueOf(iPrec) +"] =" + String.valueOf(matrice_sum[iPrec2][iPrec]));
                             for (iSuiv = 0; iSuiv < long_matr; iSuiv++) {
+                                if ( matrice[iPrec2][iPrec][iSuiv] < 0){
+                                    Log.v("ReadMatrixTxt2_readDico", "1er NEGATIF en: matrice[" + iPrec2 +"][" + iPrec+"][" + iSuiv + "] =" +matrice[iPrec2][iPrec][iSuiv]);
+                                }
                                 num += 1;
                                 temp = ((float) matrice[iPrec2][iPrec][iSuiv]) / ((float) matrice_sum[iPrec2][iPrec]);
+                                if ( temp < 0) {
+                                    Log.v("ReadMatrixTxt2_readDico", "temp [" + iPrec2 + "][" + iPrec + "][" + iSuiv + "] =" + temp);
+                                }
                                /* if (temp >1) {
                                     sup +=1;
                                     Log.v("ReadMatrixTxt2_readDico", "avant norm matrice [" + iPrec2 + "] [" + iPrec + "] [" + iSuiv + "] = " + String.valueOf(matrice[iPrec][iSuiv]));
@@ -119,7 +140,15 @@ public class ReadMatrixTxt2 {
 
                                 }
                                  */
+                                if ( matrice[iPrec2][iPrec][iSuiv] < 0) {
+                                    Log.v("ReadMatrixTxt2_readDico", "NEGATIF en: matrice[" + iPrec2 + "][" + iPrec + "][" + iSuiv + "] =" + matrice[iPrec2][iPrec][iSuiv]);
+                                    Log.v("ReadMatrixTxt2_readDico", "matrice_sum[" + iPrec2 + "][" + iPrec + "] =" + matrice_sum[iPrec2][iPrec]);
+                                }
+
                                 matrice[iPrec2][iPrec][iSuiv] = (short) ((float)100 * temp);
+                                if ( matrice[iPrec2][iPrec][iSuiv] < 0){
+                                    Log.v("ReadMatrixTxt2_readDico", "NEGATIF en: matrice[" + iPrec2 +"][" + iPrec+"][" + iSuiv + "] =" +matrice[iPrec2][iPrec][iSuiv]);
+                                }
                             }
                         }
                     }

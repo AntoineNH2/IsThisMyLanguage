@@ -109,6 +109,8 @@ public class ProbaLettre {
     }
 
 
+
+
     // CEUX QUI NE MARCHENT PAS
     public ArrayList<int[][]> LoadDico (String langue, Context mContext){
 

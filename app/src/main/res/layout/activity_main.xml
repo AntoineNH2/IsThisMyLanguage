@@ -24,12 +24,10 @@
         android:layout_height="wrap_content"
         android:text="Random letters"
         android:id="@+id/buttonRAND"
-        android:layout_marginTop="69dp"
-        android:layout_below="@+id/MotAleaTxtView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/buttonES"
-        android:layout_alignEnd="@+id/buttonES" />
+        android:layout_above="@+id/buttonES"
+        android:layout_toLeftOf="@+id/buttonLangue"
+        android:layout_toStartOf="@+id/buttonLangue"
+        android:layout_marginBottom="26dp" />
 
     <Button
         android:layout_width="wrap_content"
