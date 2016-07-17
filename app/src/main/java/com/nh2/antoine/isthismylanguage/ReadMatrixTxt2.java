@@ -31,6 +31,7 @@ public class ReadMatrixTxt2 {
 
         int long_matr = 65; // MA MATRICE
         short max_short = 32766;
+        int nSum=0;
 
 
         Context mContext = context;
@@ -123,7 +124,8 @@ public class ReadMatrixTxt2 {
                             if (matrice[iPrec2][iPrec][iSuiv] < 0) {
                                 matrice[iPrec2][iPrec][iSuiv] = max_short;
                             }
-                            matrice_sum[iPrec2][iPrec]=+matrice[iPrec2][iPrec][iSuiv];
+                            matrice_sum[iPrec2][iPrec]+= matrice[iPrec2][iPrec][iSuiv];
+                            nSum ++;
                         }
                     }
                 }
