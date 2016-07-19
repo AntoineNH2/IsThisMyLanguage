@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button BoutonGE= null;
     private Button BoutonPT = null;
     private Button BoutonAleaMot = null;
+    private Button BoutonTest = null;
 
     private String motCree;
 
@@ -287,6 +288,19 @@ public class MainActivity extends AppCompatActivity {
                 TextAlea.setText(motCree);
             }
         });
+
+        BoutonTest = (Button) findViewById(R.id.buttonTest);
+        BoutonTest.setEnabled(true);
+        BoutonTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                motCree = "\u00DF";
+                TextAlea = (TextView) findViewById(R.id.MotAleaTxtView);
+                TextAlea.setText(motCree);
+            }
+        });
+
 
         BoutonAleaMot = (Button) findViewById(R.id.buttonLangue);
         BoutonAleaMot.setOnClickListener(new View.OnClickListener() {

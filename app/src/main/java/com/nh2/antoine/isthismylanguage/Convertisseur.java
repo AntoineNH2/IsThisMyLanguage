@@ -1,6 +1,7 @@
 package com.nh2.antoine.isthismylanguage;
 
 import android.util.Log;
+import java.lang.* ;
 
 /**
  * Created by antoine on 13/05/16.
@@ -144,7 +145,7 @@ public class Convertisseur {
                     return 48;
                 case 'Ä':
                     return 48;
-                case 'ñ':
+                case '\u00F1':
                     return 49;
                 case 'Å':
                     return 50;
@@ -168,7 +169,7 @@ public class Convertisseur {
                     return 58;
                 case 'ú':
                     return 59;
-                case 'ß':
+                case '\u00DF':
                     return 60;
 
 
@@ -276,7 +277,7 @@ public class Convertisseur {
                 case 48:
                     return 'ä';
                 case 49:
-                    return 'ñ';
+                    return '\u00f1';
                 case 50:
                     return 'å';
                 case 51:
@@ -298,7 +299,7 @@ public class Convertisseur {
                 case 59:
                     return 'ú';
                 case 60:
-                    return 'ß';
+                    return '\u00DF';
 
                 // AUTRE LANGUE:
 
